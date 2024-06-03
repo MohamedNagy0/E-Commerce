@@ -81,7 +81,7 @@ export default function Login() {
                         </button>
                         <Link
                             className="text-primary text-sm hover:underline"
-                            to="/forgotPassword"
+                            to="/auth/forgotPassword"
                         >
                             Forgot your password?
                         </Link>

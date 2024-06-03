@@ -8,34 +8,51 @@ import Home from "./Pages/Home/Home";
 import Categories from "./Pages/Categories/Categories";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import VerifyCode from "./Pages/VerifyCode/VerifyCode";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import Products from "./Pages/Products/Products";
 
 function App() {
     const routes = createBrowserRouter([
         {
             path: "/",
-            element: <Layout />,
+            element: (
+                <ProtectedRoute>
+                    <Layout />
+                </ProtectedRoute>
+            ),
             children: [
-                { index: true, element: <Home /> },
+                {
+                    index: true,
+                    element: <Home />,
+                },
+
+                { path: "/products", element: <Products /> },
                 { path: "/categories/:categoryID", element: <Categories /> },
-                {
-                    path: "/login",
-                    element: <Login />,
-                },
-                {
-                    path: "/register",
-                    element: <Register />,
-                },
-                {
-                    path: "/forgotPassword",
-                    element: <ForgotPassword />,
-                },
-                {
-                    path: "/verifyCode",
-                    element: <VerifyCode />,
-                },
                 {
                     path: "*",
                     element: <NotFound />,
+                },
+            ],
+        },
+        {
+            path: "/auth",
+            element: <Layout />,
+            children: [
+                {
+                    path: "login",
+                    element: <Login />,
+                },
+                {
+                    path: "register",
+                    element: <Register />,
+                },
+                {
+                    path: "forgotPassword",
+                    element: <ForgotPassword />,
+                },
+                {
+                    path: "verifyCode",
+                    element: <VerifyCode />,
                 },
             ],
         },

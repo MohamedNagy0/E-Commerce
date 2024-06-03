@@ -25,9 +25,10 @@ export default function VerifyCode() {
             console.log(data);
             if (data.status == "Success") {
                 toast.dismiss(toastId);
-                toast.success(data.message);
-                //!
+                toast.success(data.status);
+                //!........................................!
                 navigate("/");
+                //!........................................!
             }
         } catch (error) {
             clearInputs();

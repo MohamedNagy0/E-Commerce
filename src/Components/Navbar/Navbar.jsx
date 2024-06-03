@@ -67,10 +67,10 @@ export default function Navbar() {
 
                         <ul className="flex gap-4 items-center text-gray-500">
                             <li>
-                                <NavLink to="login">Login</NavLink>
+                                <NavLink to="/auth/login">Login</NavLink>
                             </li>
                             <li>
-                                <NavLink to="register">Sign up</NavLink>
+                                <NavLink to="/auth/register">Sign up</NavLink>
                             </li>
                             <li>
                                 <a className="text-black" href="/">

@@ -26,7 +26,7 @@ export default function ForgotPassword() {
             if (data.statusMsg == "success") {
                 toast.dismiss(toastId);
                 toast.success(data.message);
-                navigate("/verifyCode");
+                navigate("/auth/verifyCode");
             }
         } catch (error) {
             clearInputs();
