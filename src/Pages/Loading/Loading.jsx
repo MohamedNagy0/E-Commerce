@@ -1,7 +1,7 @@
 export default function Loading() {
     return (
         <>
-            <div className="loader flex justify-center items-center translate-y-[100%] my-28">
+            <div className="loader flex justify-center items-center my-28">
                 <div className="preloader">
                     <svg
                         className="cart"

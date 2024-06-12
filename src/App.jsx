@@ -10,6 +10,13 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import VerifyCode from "./Pages/VerifyCode/VerifyCode";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import Products from "./Pages/Products/Products";
+import UserProvider from "./Context/User.context";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import Brands from "./Pages/Brands/Brands";
+import Cart from "./Pages/Cart/Cart";
+import CartProvider from "./Context/Cart.context";
+import CategoriesDetails from "./Pages/CategoriesDetails/CategoriesDetails";
+import AllOrders from "./Pages/AllOrders/AllOrders";
 
 function App() {
     const routes = createBrowserRouter([
@@ -27,11 +34,20 @@ function App() {
                 },
 
                 { path: "/products", element: <Products /> },
-                { path: "/categories/:categoryID", element: <Categories /> },
+                { path: "/product/:productId", element: <ProductDetails /> },
+                { path: "/categories", element: <Categories /> },
+                {
+                    path: "/categories/:categoryId",
+                    element: <CategoriesDetails />,
+                },
+                { path: "/brands", element: <Brands /> },
+                { path: "/cart", element: <Cart /> },
+                { path: "/allorders", element: <AllOrders /> },
                 {
                     path: "*",
                     element: <NotFound />,
                 },
+                "details",
             ],
         },
         {
@@ -59,8 +75,12 @@ function App() {
     ]);
     return (
         <>
-            <RouterProvider router={routes}></RouterProvider>
-            <Toaster />
+            <UserProvider>
+                <CartProvider>
+                    <RouterProvider router={routes}></RouterProvider>
+                    <Toaster />
+                </CartProvider>
+            </UserProvider>
         </>
     );
 }

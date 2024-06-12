@@ -29,9 +29,9 @@ export default function Footer() {
                         <button className="btn-primary">Share app link</button>
                     </div>
 
-                    <footer className="flex justify-between items-center mt-8 border-y py-4 border-slate-200">
+                    <div className="flex max-sm:flex-wrap  justify-between items-center mt-8 border-y py-4 border-slate-200">
                         <div className="paymentTools flex gap-4 items-center">
-                            <h2>Payment Partners</h2>
+                            <h2 className="text-nowrap">Payment Partners</h2>
                             <a href="">
                                 <img
                                     className="w-16"
@@ -62,7 +62,9 @@ export default function Footer() {
                             </a>
                         </div>
                         <div className="flex items-center gap-3">
-                            <h2>Get deliveries with FreshCart</h2>
+                            <h2 className="text-nowrap">
+                                Get deliveries with FreshCart
+                            </h2>
                             <a href="">
                                 <img
                                     className="w-24"
@@ -78,7 +80,7 @@ export default function Footer() {
                                 />
                             </a>
                         </div>
-                    </footer>
+                    </div>
                 </div>
             </footer>
         </>

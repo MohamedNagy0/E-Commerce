@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import HomeSilder from "../../Components/HomeSilder/HomeSilder";
-import CategorySilder from "../../Components/CategorySilder/CategorySilder";
+import CategorySilder from "../../Components/CategorySilder/CategorySidler";
 import Title from "../../Components/Title/Title";
 
 export default function Home() {
@@ -29,9 +29,11 @@ export default function Home() {
 
                     <CategorySilder />
 
-                    <Title name="Products" />
+                    <div id="products-section">
+                        <Title name="Products" />
+                    </div>
 
-                    <div className="wrapper grid grid-cols-12 gap-5">
+                    <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
                         {productsArr.map((obj, index) => {
                             return (
                                 <ProductCard

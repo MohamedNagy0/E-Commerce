@@ -25,7 +25,15 @@ export default function VerifyCode() {
             console.log(data);
             if (data.status == "Success") {
                 toast.dismiss(toastId);
-                toast.success(data.status);
+                toast(data.status, {
+                    duration: 2000,
+                    position: "top-center",
+                    icon: (
+                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                            <i className="fa-solid fa-check text-white"></i>
+                        </span>
+                    ),
+                });
                 //!........................................!
                 navigate("/");
                 //!........................................!

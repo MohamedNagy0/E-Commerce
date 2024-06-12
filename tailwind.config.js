@@ -23,8 +23,31 @@ export default {
             },
             colors: {
                 primary: "#09c",
+                darkPrimary: "rgb(8, 47, 73)",
+                lightPrimary: "rgb(2 173 227)",
+
                 light: "#f0f3f2",
                 rating: "#ffc908",
+            },
+            keyframes: {
+                shake: {
+                    "0%": { transform: "rotate(0deg)" },
+                    "25%": { transform: "rotate(15deg)" },
+                    "50%": { transform: "rotate(0deg)" },
+                    "75%": { transform: "rotate(-15deg)" },
+                    "100%": { transform: "rotate(0deg)" },
+                },
+                cart: {
+                    "0%": { transform: "translateY(0)" },
+                    "25%": { transform: "translateY(-7px)" },
+                    "50%": { transform: "translateY(-2px)" },
+                    "75%": { transform: "translateY(-7px)" },
+                    "100%": { transform: "translateY(0)" },
+                },
+            },
+            animation: {
+                shake: "shake 300ms linear infinite forwards",
+                cart: "cart 1s linear",
             },
         },
     },

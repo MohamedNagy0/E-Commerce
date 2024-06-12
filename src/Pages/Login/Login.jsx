@@ -1,9 +1,11 @@
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { userContext } from "../../Context/User.context";
 export default function Login() {
+    const { token, setToken } = useContext(userContext);
     let navigate = useNavigate();
     function clearInputs() {
         formik.values.password = "";
@@ -23,8 +25,18 @@ export default function Login() {
             const { data } = await axios.request(options);
 
             if (data.message == "success") {
+                localStorage.setItem("token", data.token);
+                setToken(localStorage.getItem("token"));
                 toast.dismiss(toastId);
-                toast.success("Welcome to FreshCart");
+                toast("Welcome to FreshCart", {
+                    duration: 2000,
+                    position: "top-center",
+                    icon: (
+                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                            <i className="fa-solid fa-check text-white"></i>
+                        </span>
+                    ),
+                });
                 navigate("/");
             }
         } catch (error) {
@@ -43,13 +55,13 @@ export default function Login() {
     });
     return (
         <>
-            <div className="container w-full">
-                <h2 className="text-primary font-bold text-3xl my-6">
+            <div className="container w-full max-md:px-6 max-w-[535px]">
+                <h2 className="text-primary font-bold text-3xl my-6 text-center">
                     <i className="fa-regular fa-user mr-2"></i>
                     <span>Login </span>
                 </h2>
                 <form
-                    className="w-full flex flex-col gap-6"
+                    className="w-full flex flex-col gap-5 "
                     onSubmit={formik.handleSubmit}
                 >
                     <div>
@@ -75,8 +87,9 @@ export default function Login() {
                             placeholder="Enter Your Password"
                         />
                     </div>
-                    <div className="flex justify-between items-center">
-                        <button type="submit" className="btn-primary">
+
+                    <div className="flex flex-col gap-4 justify-between items-center">
+                        <button type="submit" className="btn-primary w-full">
                             Log in
                         </button>
                         <Link
@@ -85,6 +98,14 @@ export default function Login() {
                         >
                             Forgot your password?
                         </Link>
+                        <div>
+                            <Link
+                                to="/auth/register"
+                                className="btn-primary text-sm "
+                            >
+                                Create New Account
+                            </Link>
+                        </div>
                     </div>
                 </form>
             </div>

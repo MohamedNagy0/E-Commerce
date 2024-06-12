@@ -2,7 +2,7 @@ import axios from "axios";
 import { Formik, useFormik } from "formik";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 export default function Register() {
@@ -39,7 +39,16 @@ export default function Register() {
             const { data } = await axios.request(options);
 
             toast.dismiss(toastId);
-            toast.success("User Created Successfully");
+
+            toast("User Created Successfully", {
+                duration: 2000,
+                position: "top-center",
+                icon: (
+                    <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                        <i className="fa-solid fa-check text-white"></i>
+                    </span>
+                ),
+            });
 
             setTimeout(() => {
                 if (data.message == "success") {
@@ -58,8 +67,8 @@ export default function Register() {
     const formValidation = Yup.object({
         name: Yup.string()
             .required("name is required")
-            .min(3, "password must more then 3 characters")
-            .max(10, "password must less then 11 characters"),
+            .min(3, "name must more then 3 characters")
+            .max(10, "name must less then 11 characters"),
         email: Yup.string()
             .required("email is required")
             .email("email is invalid"),
@@ -89,8 +98,8 @@ export default function Register() {
 
     return (
         <>
-            <div className="container">
-                <h2 className="text-primary font-bold text-3xl my-6">
+            <div className="container max-md:px-6 max-w-[535px]">
+                <h2 className="text-primary font-bold text-3xl my-6 text-center">
                     <i className="fa-regular fa-user mr-2"></i>
                     <span>Register Now</span>
                 </h2>
@@ -183,10 +192,16 @@ export default function Register() {
                             *{formik.errors.rePassword}
                         </p>
                     )}
-                    <div className="mt-2">
-                        <button type="submit" className="btn-primary">
+                    <div className="mt-2 flex flex-col gap-4 justify-between items-center">
+                        <button type="submit" className="btn-primary w-full">
                             Sign up
                         </button>
+                        <Link
+                            to="/auth/login"
+                            className="text-primary text-sm hover:underline"
+                        >
+                            Already have an account ?
+                        </Link>
                     </div>
                 </form>
             </div>

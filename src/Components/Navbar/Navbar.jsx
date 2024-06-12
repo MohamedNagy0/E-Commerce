@@ -1,36 +1,93 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useContext, useEffect, useState } from "react";
+import { userContext } from "../../Context/User.context";
+import { CartContext } from "../../Context/Cart.context";
 export default function Navbar() {
+    const [open, setOpen] = useState(false);
+    const { token, logOut } = useContext(userContext);
+    const { getAllProductsCart, cartProducts, cartAnimation } =
+        useContext(CartContext);
+    useEffect(() => {
+        getAllProductsCart();
+
+        console.log(cartProducts);
+    }, []);
+
     return (
         <>
             <nav
                 className={`${styles.nav} bg-light p-4 fixed left-0 top-0 right-0 z-50`}
             >
                 <div className="container">
-                    <div className="row flex gap-6 items-center">
-                        <h1 className="text-2xl font-[900]">
+                    <div className="row flex  gap-4 items-center max-md:flex-wrap">
+                        <h1 className="text-2xl font-bold text-nowrap">
                             <Link to="/">
                                 <i className="fa-brands fa-opencart text-primary mr-2"></i>
                                 <span>FreshCart</span>
                             </Link>
                         </h1>
 
-                        <ul className="flex gap-4 nav-links items-center mr-auto text-gray-500">
-                            <li>
-                                <NavLink to="/">Home</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="products">Products</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="categories">Categories</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="brands">Brands</NavLink>
-                            </li>
-                        </ul>
+                        {token ? (
+                            <Link
+                                to="/cart"
+                                className={`ml-auto ${cartAnimation} hover:text-slate-700  duration-300 relative md:order-3 cursor-pointer`}
+                            >
+                                <i className="fa-solid fa-cart-shopping fa-lg"></i>
+                                <span className="bg-primary font-extrabold  text-sm p-3 size-1 rounded-full text-white flex justify-center items-center absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2">
+                                    {cartProducts == null
+                                        ? 0
+                                        : cartProducts.numOfCartItems || 0}
+                                </span>
+                            </Link>
+                        ) : (
+                            ""
+                        )}
 
-                        <ul className="flex gap-4 items-center">
+                        <span
+                            className={`md:hidden ${!token ? "ml-auto" : ""} `}
+                            onClick={() => {
+                                setOpen(!open);
+                            }}
+                        >
+                            <i className="fa-solid fa-bars cursor-pointer  text-lg"></i>
+                        </span>
+
+                        {token ? (
+                            <ul
+                                className={`${
+                                    open ? "flex" : "hidden"
+                                } max-md:w-full max-md:flex-col md:flex gap-4 nav-links items-center mr-auto text-gray-500`}
+                            >
+                                <li>
+                                    <NavLink to="/">Home</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="products">Products</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="categories">
+                                        Categories
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="brands">Brands</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="allorders">Orders</NavLink>
+                                </li>
+                            </ul>
+                        ) : (
+                            ""
+                        )}
+
+                        <ul
+                            className={` ${
+                                open ? "flex" : "hidden"
+                            } max-md:w-full order-4  md:flex justify-center  gap-4 items-center ${
+                                !token ? "ml-auto" : ""
+                            }`}
+                        >
                             <li>
                                 <a
                                     target="_blank"
@@ -65,18 +122,34 @@ export default function Navbar() {
                             </li>
                         </ul>
 
-                        <ul className="flex gap-4 items-center text-gray-500">
-                            <li>
-                                <NavLink to="/auth/login">Login</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/auth/register">Sign up</NavLink>
-                            </li>
-                            <li>
-                                <a className="text-black" href="/">
-                                    <i className="fa-solid fa-right-from-bracket"></i>
-                                </a>
-                            </li>
+                        <ul
+                            className={` ${
+                                open ? "flex" : "hidden"
+                            }  gap-4 max-md:w-full order-5 md:flex justify-center items-center  text-gray-500`}
+                        >
+                            {!token ? (
+                                <>
+                                    <li>
+                                        <NavLink to="/auth/login">
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/auth/register">
+                                            Sign up
+                                        </NavLink>
+                                    </li>
+                                </>
+                            ) : (
+                                <li>
+                                    <span
+                                        onClick={logOut}
+                                        className="text-red-500 text-base cursor-pointer font-semibold"
+                                    >
+                                        LogOut
+                                    </span>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
