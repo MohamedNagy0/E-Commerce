@@ -12,7 +12,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 export default function CheckOut({ totalPrice }) {
     const navigate = useNavigate();
     const { cartProducts, setCartProducts } = useContext(CartContext);
-    const { token } = useContext(userContext);
+    const { token, phone } = useContext(userContext);
     const [payment, setPayMent] = useState(null);
 
     // function clearInputs() {
@@ -46,7 +46,7 @@ export default function CheckOut({ totalPrice }) {
 
             toast.dismiss(toastId);
 
-            toast("Order checked out Successfully", {
+            toast("Order Created Successfully", {
                 duration: 2000,
                 position: "top-center",
                 icon: (
@@ -130,7 +130,7 @@ export default function CheckOut({ totalPrice }) {
         initialValues: {
             shippingAddress: {
                 details: "",
-                phone: "",
+                phone: phone,
                 city: "",
             },
         },
@@ -152,16 +152,14 @@ export default function CheckOut({ totalPrice }) {
         <>
             <div className="container  max-w-[535px] mt-12">
                 <span className="block mt-12 mx-auto w-[200px] rounded-full h-[2px] bg-primary"></span>
-                <h2
-                    id="checkOut"
-                    className="text-center  my-2 font-bold text-lg Outfit"
-                >
+                <h2 className="text-center my-2 font-bold text-lg Outfit">
                     Check Out
                 </h2>
                 <span className="block  mx-auto w-[200px] rounded-full h-[2px] bg-primary"></span>
 
                 <form
-                    className="w-full p-8 border border-darkPrimary flex flex-col gap-6 mt-12"
+                    id="checkOut"
+                    className="w-full p-8 border border-gray-300 rounded-lg duration-700 target:border-darkPrimary   flex flex-col gap-6 mt-12"
                     onSubmit={formik.handleSubmit}
                 >
                     <h3 className="font-bold text-lg -ml-2">Cart totals</h3>

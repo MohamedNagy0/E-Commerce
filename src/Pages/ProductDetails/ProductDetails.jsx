@@ -1,15 +1,19 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import ReactImageGallery from "react-image-gallery";
 import { CartContext } from "../../Context/Cart.context";
 import BackButton from "../../Components/BackButton/BackButton";
+import { userContext } from "../../Context/User.context";
 
 // https://ecommerce.routemisr.com/api/v1/products/6428de2adc1175abc65ca05b
 export default function ProductDetails() {
     const [data, setData] = useState(null);
     const { addProductToCart } = useContext(CartContext);
+    const { token } = useContext(userContext);
+    let navigate = useNavigate();
+
     let { productId } = useParams();
     async function getProductDetails() {
         let { data } = await axios.get(
@@ -18,6 +22,7 @@ export default function ProductDetails() {
         setData(data.data);
         console.log(data.data);
     }
+
     useEffect(() => {
         getProductDetails();
     }, []);
@@ -38,8 +43,8 @@ export default function ProductDetails() {
                     <section>
                         <div className="container">
                             <div className="wrapper grid grid-cols-12 gap-6">
-                                <div className="col-span-12 md:col-span-4">
-                                    <div className="inner max-md:px-12">
+                                <div className="col-span-12 md:col-span-4 rounded-xl">
+                                    <div className="inner max-md:px-12 ">
                                         <ReactImageGallery
                                             items={productImages}
                                             showNav={false}
@@ -50,8 +55,8 @@ export default function ProductDetails() {
                                     </div>
                                 </div>
                                 <div className="col-span-12 md:col-span-8 max-md:p-8 p-4">
-                                    <header>
-                                        <div className="flex justify-between items-center">
+                                    <header className="flex flex-col gap-1">
+                                        <div className="flex  justify-between items-center">
                                             <h2 className="font-bold text-3xl mb-1">
                                                 Woman Shawl
                                             </h2>
@@ -67,44 +72,49 @@ export default function ProductDetails() {
                                                 Available
                                             </span>
                                         </div>
+                                        <div>
+                                            <i className="fa-solid text-yellow-400 fa-star mr-1"></i>
+                                            <span>{data.ratingsAverage}</span>
+                                        </div>
                                     </header>
                                     <p className="text-slate-500 my-4 ml-1">
                                         {data.description}
                                     </p>
                                     <footer className="ml-1">
                                         <div className="flex justify-between items-center">
-                                            <div>
-                                                <span className="mr-1">
-                                                    <span
-                                                        className={`mr-1 text-lg font-semibold text-primary ${
-                                                            data.priceAfterDiscount
-                                                                ? "text-sm line-through font-light text-slate-400"
-                                                                : ""
-                                                        }`}
-                                                    >
+                                            <div className="flex items-center gap-2">
+                                                {data.priceAfterDiscount ? (
+                                                    <span className="text-sm line-through font-light text-slate-400">
                                                         ${data.price}
                                                     </span>
+                                                ) : (
+                                                    ""
+                                                )}
+
+                                                {data.priceAfterDiscount ? (
                                                     <span className="text-lg font-semibold text-primary">
                                                         $
                                                         {
                                                             data.priceAfterDiscount
                                                         }
                                                     </span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <i className="fa-solid text-yellow-400 fa-star mr-1"></i>
-                                                <span>
-                                                    {data.ratingsAverage}
-                                                </span>
+                                                ) : (
+                                                    <span className="text-lg font-semibold text-primary">
+                                                        ${data.price}
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
                                         <div className="mt-4">
                                             <button
                                                 onClick={() => {
-                                                    addProductToCart({
-                                                        productId: data.id,
-                                                    });
+                                                    if (token) {
+                                                        addProductToCart({
+                                                            productId: data.id,
+                                                        });
+                                                    } else {
+                                                        navigate("/auth/login");
+                                                    }
                                                 }}
                                                 className="btn-primary w-full group"
                                             >

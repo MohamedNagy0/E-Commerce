@@ -8,7 +8,6 @@ import Home from "./Pages/Home/Home";
 import Categories from "./Pages/Categories/Categories";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import VerifyCode from "./Pages/VerifyCode/VerifyCode";
-import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import Products from "./Pages/Products/Products";
 import UserProvider from "./Context/User.context";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
@@ -17,16 +16,15 @@ import Cart from "./Pages/Cart/Cart";
 import CartProvider from "./Context/Cart.context";
 import CategoriesDetails from "./Pages/CategoriesDetails/CategoriesDetails";
 import AllOrders from "./Pages/AllOrders/AllOrders";
+import ProtectedAuth from "./Components/Protect/ProtectedAuth/ProtectedAuth";
+import ProtectedCart from "./Components/Protect/ProtectedCart/ProtectedCart";
+import ProtectedAllOrders from "./Components/Protect/ProtectedAllOrders/ProtectedAllOrders";
 
 function App() {
     const routes = createBrowserRouter([
         {
             path: "/",
-            element: (
-                <ProtectedRoute>
-                    <Layout />
-                </ProtectedRoute>
-            ),
+            element: <Layout />,
             children: [
                 {
                     index: true,
@@ -41,8 +39,22 @@ function App() {
                     element: <CategoriesDetails />,
                 },
                 { path: "/brands", element: <Brands /> },
-                { path: "/cart", element: <Cart /> },
-                { path: "/allorders", element: <AllOrders /> },
+                {
+                    path: "/cart",
+                    element: (
+                        <ProtectedCart>
+                            <Cart />
+                        </ProtectedCart>
+                    ),
+                },
+                {
+                    path: "/allorders",
+                    element: (
+                        <ProtectedAllOrders>
+                            <AllOrders />
+                        </ProtectedAllOrders>
+                    ),
+                },
                 {
                     path: "*",
                     element: <NotFound />,
@@ -52,7 +64,11 @@ function App() {
         },
         {
             path: "/auth",
-            element: <Layout />,
+            element: (
+                <ProtectedAuth>
+                    <Layout />
+                </ProtectedAuth>
+            ),
             children: [
                 {
                     path: "login",

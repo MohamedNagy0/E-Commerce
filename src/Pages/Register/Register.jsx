@@ -1,11 +1,13 @@
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { userContext } from "../../Context/User.context";
 
 export default function Register() {
+    const { setToken } = useContext(userContext);
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -34,27 +36,34 @@ export default function Register() {
                 data: values,
             };
 
+            localStorage.setItem("phone", formik.values.phone);
+
             toastId = toast.loading("Waiting...");
 
             const { data } = await axios.request(options);
+            localStorage.setItem("token", data.token);
+            setToken(localStorage.getItem("token"));
 
             toast.dismiss(toastId);
 
-            toast("User Created Successfully", {
-                duration: 2000,
-                position: "top-center",
-                icon: (
-                    <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                        <i className="fa-solid fa-check text-white"></i>
-                    </span>
-                ),
-            });
-
-            setTimeout(() => {
-                if (data.message == "success") {
-                    navigate("/login");
+            toast(
+                <span className="text-darkPrimary ">
+                    Welcome <span className="font-bold">{data.user.name}</span>
+                </span>,
+                {
+                    duration: 2000,
+                    position: "top-center",
+                    icon: (
+                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                            <i className="fa-solid fa-check text-white"></i>
+                        </span>
+                    ),
                 }
-            }, 1000);
+            );
+
+            if (data.message == "success") {
+                navigate("/");
+            }
         } catch (error) {
             clearInputs();
             changeTouchedValue();

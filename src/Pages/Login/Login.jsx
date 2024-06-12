@@ -28,15 +28,21 @@ export default function Login() {
                 localStorage.setItem("token", data.token);
                 setToken(localStorage.getItem("token"));
                 toast.dismiss(toastId);
-                toast("Welcome to FreshCart", {
-                    duration: 2000,
-                    position: "top-center",
-                    icon: (
-                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                            <i className="fa-solid fa-check text-white"></i>
-                        </span>
-                    ),
-                });
+                toast(
+                    <span className="text-darkPrimary ">
+                        Welcome{" "}
+                        <span className="font-bold">{data.user.name}</span>
+                    </span>,
+                    {
+                        duration: 2000,
+                        position: "top-center",
+                        icon: (
+                            <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                                <i className="fa-solid fa-check text-white"></i>
+                            </span>
+                        ),
+                    }
+                );
                 navigate("/");
             }
         } catch (error) {

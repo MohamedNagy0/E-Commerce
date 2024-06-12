@@ -116,13 +116,13 @@ export default function Cart() {
                                                                     Rate :
                                                                 </span>
                                                                 <span className="text-primary">
+                                                                    <i className="fa-solid text-yellow-400 fa-star mr-1"></i>
                                                                     {
                                                                         product
                                                                             .product
                                                                             .ratingsAverage
                                                                     }
                                                                 </span>
-                                                                <i className="fa-solid text-yellow-400 fa-star mr-1"></i>
                                                             </div>
 
                                                             <div className="text-primary text-base ">
@@ -166,7 +166,7 @@ export default function Cart() {
                                                             </div>
                                                         </div>
 
-                                                        <div className="flex  justify-between items-center w-full">
+                                                        <div className="flex md:max-lg:mt-2 justify-between items-center w-full">
                                                             <div className="flex justify-center items-center gap-5 border-2 self-center  px-4 py-1 md:py-2 rounded-2xl ">
                                                                 <button
                                                                     onClick={() => {
@@ -228,7 +228,7 @@ export default function Cart() {
                                                                 <span className="font-medium text-sm text-darkPrimary">
                                                                     Total Price
                                                                 </span>
-                                                                <span>
+                                                                <span className="text-base">
                                                                     $
                                                                     {product.price *
                                                                         product.count}

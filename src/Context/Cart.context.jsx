@@ -80,8 +80,6 @@ export default function CartProvider({ children }) {
 
             let { data } = await axios.request(options);
 
-            console.log(data);
-
             if (data.numOfCartItems === 0) {
                 setCartProducts([]);
             } else {

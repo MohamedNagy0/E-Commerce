@@ -64,10 +64,11 @@ export default function Loading() {
                     </svg>
                     <div className="preloader__text">
                         <p className="preloader__msg">
-                            Bringing you the goods…
+                            <span className="font-bold">FreshCart</span> is
+                            loading ...
                         </p>
                         <p className="preloader__msg preloader__msg--last">
-                            This is taking long. Something’s wrong.
+                            Check your internet connection please.
                         </p>
                     </div>
                 </div>

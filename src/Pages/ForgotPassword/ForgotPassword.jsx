@@ -86,7 +86,7 @@ export default function ForgotPassword() {
                         </button>
                         <Link
                             className="text-xs text-primary font-bold inline-block mt-4 hover:underline"
-                            to="/login"
+                            to="/auth/login"
                         >
                             Back to log in
                         </Link>

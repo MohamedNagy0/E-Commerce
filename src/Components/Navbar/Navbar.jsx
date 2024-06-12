@@ -10,8 +10,6 @@ export default function Navbar() {
         useContext(CartContext);
     useEffect(() => {
         getAllProductsCart();
-
-        console.log(cartProducts);
     }, []);
 
     return (
@@ -53,40 +51,36 @@ export default function Navbar() {
                             <i className="fa-solid fa-bars cursor-pointer  text-lg"></i>
                         </span>
 
-                        {token ? (
-                            <ul
-                                className={`${
-                                    open ? "flex" : "hidden"
-                                } max-md:w-full max-md:flex-col md:flex gap-4 nav-links items-center mr-auto text-gray-500`}
-                            >
-                                <li>
-                                    <NavLink to="/">Home</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="products">Products</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="categories">
-                                        Categories
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="brands">Brands</NavLink>
-                                </li>
+                        <ul
+                            className={`${
+                                open ? "flex" : "hidden"
+                            }  max-md:w-full max-md:flex-col md:flex gap-4 nav-links items-center mr-auto text-gray-500`}
+                        >
+                            <li>
+                                <NavLink to="/">Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="products">Products</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="categories">Categories</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="brands">Brands</NavLink>
+                            </li>
+                            {token ? (
                                 <li>
                                     <NavLink to="allorders">Orders</NavLink>
                                 </li>
-                            </ul>
-                        ) : (
-                            ""
-                        )}
+                            ) : (
+                                ""
+                            )}
+                        </ul>
 
                         <ul
                             className={` ${
                                 open ? "flex" : "hidden"
-                            } max-md:w-full order-4  md:flex justify-center  gap-4 items-center ${
-                                !token ? "ml-auto" : ""
-                            }`}
+                            } max-md:w-full order-4  md:flex justify-center gap-4 items-center`}
                         >
                             <li>
                                 <a
@@ -135,7 +129,10 @@ export default function Navbar() {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/auth/register">
+                                        <NavLink
+                                            className="text-nowrap"
+                                            to="/auth/register"
+                                        >
                                             Sign up
                                         </NavLink>
                                     </li>
