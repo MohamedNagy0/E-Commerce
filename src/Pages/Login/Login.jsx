@@ -5,8 +5,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/User.context";
 export default function Login() {
-    const { token, setToken, welcomeStatus, setWelcomeStatus } =
-        useContext(userContext);
+    const { token, setToken } = useContext(userContext);
     let navigate = useNavigate();
     function clearInputs() {
         formik.values.password = "";
@@ -30,25 +29,21 @@ export default function Login() {
                 setToken(localStorage.getItem("token"));
                 toast.dismiss(toastId);
 
-                if (welcomeStatus) {
-                    setWelcomeStatus(!welcomeStatus);
-
-                    toast(
-                        <span className="text-darkPrimary ">
-                            Welcome Back{" "}
-                            <span className="font-bold">{data.user.name}</span>
-                        </span>,
-                        {
-                            duration: 2000,
-                            position: "top-center",
-                            icon: (
-                                <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                                    <i className="fa-solid fa-check text-white"></i>
-                                </span>
-                            ),
-                        }
-                    );
-                }
+                toast(
+                    <span className="text-darkPrimary ">
+                        Welcome Back{" "}
+                        <span className="font-bold">{data.user.name}</span>
+                    </span>,
+                    {
+                        duration: 2000,
+                        position: "top-center",
+                        icon: (
+                            <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                                <i className="fa-solid fa-check text-white"></i>
+                            </span>
+                        ),
+                    }
+                );
 
                 navigate("/");
             }

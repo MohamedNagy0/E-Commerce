@@ -10,6 +10,7 @@ import BackButton from "../../Components/BackButton/BackButton";
 export default function Cart() {
     const [placeHolderImage, setPlaceHolderImage] = useState("block");
     const [imgShow, setImgShow] = useState("hidden");
+
     const {
         getAllProductsCart,
         cartProducts,

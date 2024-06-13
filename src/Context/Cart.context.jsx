@@ -2,13 +2,20 @@ import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import { userContext } from "./User.context";
 import toast from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
 
 export const CartContext = createContext("");
 
 export default function CartProvider({ children }) {
     const { token } = useContext(userContext);
     const [cartProducts, setCartProducts] = useState(null);
+    const [userOrders, setUserOrders] = useState(null);
     const [cartAnimation, setCartAnimation] = useState(false);
+    const { id } = jwtDecode(
+        token
+            ? token
+            : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzI2YTFiZDlkNzY2MDI3NTdhMjMwMiIsIm5hbWUiOiJNb2hhbWVkTmFneSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE4MjgxMDI5LCJleHAiOjE3MjYwNTcwMjl9.JmtZdILhAhR9FFFoFPHtnzfGhDHBeKwKO34ReRkDIVE"
+    );
 
     async function addProductToCart({ productId }) {
         let toastId;
@@ -208,6 +215,18 @@ export default function CartProvider({ children }) {
         } catch (error) {}
     }
 
+    async function getUserOrders() {
+        try {
+            const options = {
+                url: `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
+                method: "GET",
+            };
+            const { data } = await axios.request(options);
+            setUserOrders(data);
+            console.log(data);
+        } catch (error) {}
+    }
+
     return (
         <>
             <CartContext.Provider
@@ -220,6 +239,8 @@ export default function CartProvider({ children }) {
                     updateProductCount,
                     clearAllCartProducts,
                     cartAnimation,
+                    getUserOrders,
+                    userOrders,
                 }}
             >
                 {children}

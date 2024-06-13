@@ -11,7 +11,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 export default function CheckOut({ totalPrice }) {
     const navigate = useNavigate();
-    const { cartProducts, setCartProducts } = useContext(CartContext);
+    const { cartProducts, setCartProducts, userOrders } =
+        useContext(CartContext);
     const { token, phone } = useContext(userContext);
     const [payment, setPayMent] = useState(null);
 
@@ -130,7 +131,7 @@ export default function CheckOut({ totalPrice }) {
         initialValues: {
             shippingAddress: {
                 details: "",
-                phone: phone,
+                phone: userOrders[0].user.phone,
                 city: "",
             },
         },
