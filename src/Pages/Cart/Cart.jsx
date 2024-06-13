@@ -8,7 +8,8 @@ import CheckOut from "../../Components/CheckOut/CheckOut";
 import BackButton from "../../Components/BackButton/BackButton";
 
 export default function Cart() {
-    const [hidden, setHidden] = useState(false);
+    const [placeHolderImage, setPlaceHolderImage] = useState("block");
+    const [imgShow, setImgShow] = useState("hidden");
     const {
         getAllProductsCart,
         cartProducts,
@@ -85,6 +86,7 @@ export default function Cart() {
                                                     <div className="col-span-4 md:col-span-3 lg:col-span-2">
                                                         <div className="inner rounded-3xl overflow-hidden  border-2 ">
                                                             <img
+                                                                className={`w-full ${imgShow}`}
                                                                 src={
                                                                     product
                                                                         .product
@@ -96,6 +98,27 @@ export default function Cart() {
                                                                         .title
                                                                 }
                                                             />
+                                                            <div
+                                                                className={`w-full h-[150px] bg-gray-300 animate-pulse ${placeHolderImage}`}
+                                                            ></div>
+                                                            <div className="hidden">
+                                                                {setTimeout(
+                                                                    () => {
+                                                                        setPlaceHolderImage(
+                                                                            "hidden"
+                                                                        );
+                                                                        if (
+                                                                            placeHolderImage ==
+                                                                            "hidden"
+                                                                        ) {
+                                                                            setImgShow(
+                                                                                "block"
+                                                                            );
+                                                                        }
+                                                                    },
+                                                                    500
+                                                                )}
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -206,6 +229,14 @@ export default function Cart() {
                                                                 </span>
                                                                 <button
                                                                     onClick={() => {
+                                                                        var r =
+                                                                            document.querySelector(
+                                                                                ":root"
+                                                                            );
+                                                                        r.style.setProperty(
+                                                                            "--countColor",
+                                                                            "green"
+                                                                        );
                                                                         updateProductCount(
                                                                             {
                                                                                 productId:
@@ -264,7 +295,7 @@ export default function Cart() {
                                                                     });
                                                                 }}
                                                             >
-                                                                <i className="fa-solid hidden md:flex border-2 border-transparent  hover:text-red-600 hover:border-red-600 size-1 justify-center items-center p-3 rounded-full fa-x group-hover:rotate-180 duration-300 text-sm text-gray-500"></i>
+                                                                <i className="fa-solid fa-xmark text-base hidden md:flex border-2 border-transparent  hover:text-red-600 hover:border-red-600 size-1 justify-center items-center p-3 rounded-full  group-hover:rotate-90 duration-300 text-gray-500"></i>
                                                                 <span className="btn-primary md:hidden rounded-3xl group text-xs px-2 py-1 bg-red-600 hover:bg-red-500 duration-300">
                                                                     {" "}
                                                                     <i className="fa-solid fa-trash-can  mr-2 group-hover:animate-shake"></i>{" "}

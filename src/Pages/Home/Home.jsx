@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import HomeSilder from "../../Components/HomeSilder/HomeSilder";
@@ -8,7 +8,7 @@ import Title from "../../Components/Title/Title";
 
 export default function Home() {
     //https://ecommerce.routemisr.com/api/v1/products
-    const [productsArr, setProductsArr] = useState(null);
+    const [allProductsList, setAllProductsList] = useState(null);
     async function getAllProducts() {
         const options = {
             method: "GET",
@@ -16,14 +16,15 @@ export default function Home() {
         };
 
         let { data } = await axios.request(options);
-        setProductsArr(data.data);
+        setAllProductsList(data.data);
     }
     useEffect(() => {
         getAllProducts();
     }, []);
+
     return (
         <>
-            {productsArr ? (
+            {allProductsList ? (
                 <section>
                     <HomeSilder />
 
@@ -34,7 +35,7 @@ export default function Home() {
                     </div>
 
                     <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
-                        {productsArr.map((obj, index) => {
+                        {allProductsList.map((obj, index) => {
                             return (
                                 <ProductCard
                                     products={obj}

@@ -19,8 +19,11 @@ import AllOrders from "./Pages/AllOrders/AllOrders";
 import ProtectedAuth from "./Components/Protect/ProtectedAuth/ProtectedAuth";
 import ProtectedCart from "./Components/Protect/ProtectedCart/ProtectedCart";
 import ProtectedAllOrders from "./Components/Protect/ProtectedAllOrders/ProtectedAllOrders";
+import { useState } from "react";
 
 function App() {
+    const [theme, setTheme] = useState("light");
+
     const routes = createBrowserRouter([
         {
             path: "/",

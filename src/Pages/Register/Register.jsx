@@ -7,7 +7,8 @@ import * as Yup from "yup";
 import { userContext } from "../../Context/User.context";
 
 export default function Register() {
-    const { setToken } = useContext(userContext);
+    const { setToken, welcomeStatus, setWelcomeStatus } =
+        useContext(userContext);
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -36,32 +37,32 @@ export default function Register() {
                 data: values,
             };
 
-            localStorage.setItem("phone", formik.values.phone);
-
             toastId = toast.loading("Waiting...");
 
             const { data } = await axios.request(options);
-            localStorage.setItem("token", data.token);
-            setToken(localStorage.getItem("token"));
-
-            toast.dismiss(toastId);
-
-            toast(
-                <span className="text-darkPrimary ">
-                    Welcome <span className="font-bold">{data.user.name}</span>
-                </span>,
-                {
-                    duration: 2000,
-                    position: "top-center",
-                    icon: (
-                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                            <i className="fa-solid fa-check text-white"></i>
-                        </span>
-                    ),
-                }
-            );
 
             if (data.message == "success") {
+                localStorage.setItem("token", data.token);
+                setToken(localStorage.getItem("token"));
+                toast.dismiss(toastId);
+                if (welcomeStatus) {
+                    setWelcomeStatus(!welcomeStatus);
+                    toast(
+                        <span className="text-darkPrimary ">
+                            Welcome to Fresh Cart{" "}
+                            <span className="font-bold">{data.user.name}</span>
+                        </span>,
+                        {
+                            duration: 2000,
+                            position: "top-center",
+                            icon: (
+                                <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                                    <i className="fa-solid fa-check text-white"></i>
+                                </span>
+                            ),
+                        }
+                    );
+                }
                 navigate("/");
             }
         } catch (error) {

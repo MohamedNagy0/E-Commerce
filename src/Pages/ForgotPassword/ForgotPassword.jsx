@@ -68,7 +68,7 @@ export default function ForgotPassword() {
                     </label>
                     <div className="mt-1 mb-5">
                         <input
-                            // autoComplete="off"
+                            autoComplete="off"
                             id="email"
                             type="email"
                             name="email"

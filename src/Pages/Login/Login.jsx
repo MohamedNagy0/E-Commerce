@@ -5,7 +5,8 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/User.context";
 export default function Login() {
-    const { token, setToken } = useContext(userContext);
+    const { token, setToken, welcomeStatus, setWelcomeStatus } =
+        useContext(userContext);
     let navigate = useNavigate();
     function clearInputs() {
         formik.values.password = "";
@@ -28,21 +29,27 @@ export default function Login() {
                 localStorage.setItem("token", data.token);
                 setToken(localStorage.getItem("token"));
                 toast.dismiss(toastId);
-                toast(
-                    <span className="text-darkPrimary ">
-                        Welcome{" "}
-                        <span className="font-bold">{data.user.name}</span>
-                    </span>,
-                    {
-                        duration: 2000,
-                        position: "top-center",
-                        icon: (
-                            <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                                <i className="fa-solid fa-check text-white"></i>
-                            </span>
-                        ),
-                    }
-                );
+
+                if (welcomeStatus) {
+                    setWelcomeStatus(!welcomeStatus);
+
+                    toast(
+                        <span className="text-darkPrimary ">
+                            Welcome Back{" "}
+                            <span className="font-bold">{data.user.name}</span>
+                        </span>,
+                        {
+                            duration: 2000,
+                            position: "top-center",
+                            icon: (
+                                <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                                    <i className="fa-solid fa-check text-white"></i>
+                                </span>
+                            ),
+                        }
+                    );
+                }
+
                 navigate("/");
             }
         } catch (error) {
@@ -73,7 +80,6 @@ export default function Login() {
                     <div>
                         <input
                             className="form-control w-full"
-                            autoComplete="off"
                             type="email"
                             name="email"
                             value={formik.values.email}

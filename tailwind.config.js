@@ -48,6 +48,7 @@ export default {
             animation: {
                 shake: "shake 300ms linear infinite forwards",
                 cart: "cart 1s linear",
+                pulse: "pulse 500ms cubic-bezier(0.4, 0, 0.6, 1) infinite",
             },
         },
     },

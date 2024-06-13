@@ -32,11 +32,15 @@ export default function Navbar() {
                                 className={`ml-auto ${cartAnimation} hover:text-slate-700  duration-300 relative md:order-3 cursor-pointer`}
                             >
                                 <i className="fa-solid fa-cart-shopping fa-lg"></i>
-                                <span className="bg-primary font-extrabold  text-sm p-3 size-1 rounded-full text-white flex justify-center items-center absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2">
-                                    {cartProducts == null
-                                        ? 0
-                                        : cartProducts.numOfCartItems || 0}
-                                </span>
+                                {cartProducts ? (
+                                    <span className="bg-primary font-extrabold  text-sm p-3 size-1 rounded-full text-white flex justify-center items-center absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2">
+                                        {cartProducts == null
+                                            ? 0
+                                            : cartProducts.numOfCartItems || 0}
+                                    </span>
+                                ) : (
+                                    ""
+                                )}
                             </Link>
                         ) : (
                             ""
@@ -68,6 +72,7 @@ export default function Navbar() {
                             <li>
                                 <NavLink to="brands">Brands</NavLink>
                             </li>
+
                             {token ? (
                                 <li>
                                     <NavLink to="allorders">Orders</NavLink>
@@ -80,7 +85,7 @@ export default function Navbar() {
                         <ul
                             className={` ${
                                 open ? "flex" : "hidden"
-                            } max-md:w-full order-4  md:flex justify-center gap-4 items-center`}
+                            } max-md:w-full order-4  md:flex justify-center gap-3 items-center`}
                         >
                             <li>
                                 <a
@@ -138,12 +143,13 @@ export default function Navbar() {
                                     </li>
                                 </>
                             ) : (
-                                <li>
-                                    <span
-                                        onClick={logOut}
-                                        className="text-red-500 text-base cursor-pointer font-semibold"
-                                    >
-                                        LogOut
+                                <li onClick={logOut}>
+                                    <i
+                                        className="max-lg:block hidden fa-solid fa-arrow-right-from-bracket text-red-500 text-lg cursor-pointer"
+                                        title="Log out"
+                                    ></i>
+                                    <span className="text-red-500 hidden lg:block text-base cursor-pointer font-semibold">
+                                        Log out
                                     </span>
                                 </li>
                             )}

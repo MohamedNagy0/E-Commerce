@@ -5,14 +5,16 @@ export const userContext = createContext(null);
 
 export default function UserProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"));
+    const [welcomeStatus, setWelcomeStatus] = useState(true);
 
     function logOut() {
         let toastId;
-        setToken(null);
-        localStorage.removeItem("token");
         toastId = toast.loading("waiting...");
+        localStorage.removeItem("token");
         setTimeout(() => {
             toast.dismiss(toastId);
+            window.location.href = "http://localhost:5173/";
+            setToken(null);
             toast(<span className="text-darkPrimary ">Logged out</span>, {
                 duration: 2000,
                 position: "top-center",
@@ -22,8 +24,7 @@ export default function UserProvider({ children }) {
                     </span>
                 ),
             });
-            window.location.href = "http://localhost:5173/";
-        }, 1000);
+        }, 1300);
     }
     return (
         <>
@@ -32,6 +33,8 @@ export default function UserProvider({ children }) {
                     token,
                     setToken,
                     logOut,
+                    welcomeStatus,
+                    setWelcomeStatus,
                 }}
             >
                 {children}
