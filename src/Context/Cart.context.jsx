@@ -11,11 +11,11 @@ export default function CartProvider({ children }) {
     const [cartProducts, setCartProducts] = useState(null);
     const [userOrders, setUserOrders] = useState(null);
     const [cartAnimation, setCartAnimation] = useState(false);
-    const { id } = jwtDecode(
-        token
-            ? token
-            : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzI2YTFiZDlkNzY2MDI3NTdhMjMwMiIsIm5hbWUiOiJNb2hhbWVkTmFneSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE4MjgxMDI5LCJleHAiOjE3MjYwNTcwMjl9.JmtZdILhAhR9FFFoFPHtnzfGhDHBeKwKO34ReRkDIVE"
-    );
+    // const { id } = jwtDecode(
+    //     token
+    //         ? token
+    //         : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzI2YTFiZDlkNzY2MDI3NTdhMjMwMiIsIm5hbWUiOiJNb2hhbWVkTmFneSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE4MjgxMDI5LCJleHAiOjE3MjYwNTcwMjl9.JmtZdILhAhR9FFFoFPHtnzfGhDHBeKwKO34ReRkDIVE"
+    // );
 
     async function addProductToCart({ productId }) {
         let toastId;
@@ -85,6 +85,7 @@ export default function CartProvider({ children }) {
             };
 
             let { data } = await axios.request(options);
+            getUserOrders();
 
             if (data.numOfCartItems === 0) {
                 setCartProducts([]);
@@ -216,15 +217,21 @@ export default function CartProvider({ children }) {
     }
 
     async function getUserOrders() {
+        let jwtObject = {};
+        if (token) {
+            jwtObject = jwtDecode(token);
+        }
         try {
             const options = {
-                url: `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
+                url: `https://ecommerce.routemisr.com/api/v1/orders/user/${jwtObject.id}`,
                 method: "GET",
             };
             const { data } = await axios.request(options);
             setUserOrders(data);
             console.log(data);
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

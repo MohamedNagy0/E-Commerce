@@ -18,6 +18,7 @@ export default function Cart() {
         updateProductCount,
         clearAllCartProducts,
         cartAnimation,
+        userOrders,
     } = useContext(CartContext);
 
     useEffect(() => {
@@ -117,7 +118,7 @@ export default function Cart() {
                                                                             );
                                                                         }
                                                                     },
-                                                                    500
+                                                                    850
                                                                 )}
                                                             </div>
                                                         </div>
@@ -342,6 +343,9 @@ export default function Cart() {
                     {cartProducts.length != 0 ? (
                         <CheckOut
                             totalPrice={cartProducts.data.totalCartPrice}
+                            userPhone={
+                                userOrders ? userOrders[0].user.phone : ""
+                            }
                         />
                     ) : (
                         ""

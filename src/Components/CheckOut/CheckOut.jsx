@@ -2,18 +2,17 @@ import onlinePaymentImg from "../../assets/images/online1.png";
 import cashPaymentImg from "../../assets/images/cash1.png";
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import { Navigate, useNavigate } from "react-router-dom";
 
-export default function CheckOut({ totalPrice }) {
+export default function CheckOut({ totalPrice, userPhone }) {
     const navigate = useNavigate();
-    const { cartProducts, setCartProducts, userOrders } =
-        useContext(CartContext);
-    const { token, phone } = useContext(userContext);
+    const { cartProducts, setCartProducts } = useContext(CartContext);
+    const { token } = useContext(userContext);
     const [payment, setPayMent] = useState(null);
 
     // function clearInputs() {
@@ -131,7 +130,7 @@ export default function CheckOut({ totalPrice }) {
         initialValues: {
             shippingAddress: {
                 details: "",
-                phone: userOrders[0].user.phone,
+                phone: userPhone,
                 city: "",
             },
         },
