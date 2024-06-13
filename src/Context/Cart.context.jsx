@@ -39,7 +39,6 @@ export default function CartProvider({ children }) {
 
             toast.dismiss(toastId);
             setCartProducts(data);
-            console.log(data);
             toast(<span className="text-sm">{data.message}</span>, {
                 duration: 2000,
                 position: "top-right",
@@ -206,7 +205,6 @@ export default function CartProvider({ children }) {
                 }
             );
             setCartProducts(data);
-            console.log(data);
         } catch (error) {}
     }
 

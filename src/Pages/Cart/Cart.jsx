@@ -41,16 +41,13 @@ export default function Cart() {
                             </div>
                             {cartProducts.length != 0 ? (
                                 <div className="flex flex-col justify-center items-center gap-3">
-                                    <h3 className="font-semibold">
-                                        <span>
+                                    <h3 className="font-semibold flex text-nowrap text-primary">
+                                        <span className="text-darkPrimary">
                                             Total Price :{" "}
-                                            <span className="text-primary">
-                                                $
-                                                {
-                                                    cartProducts.data
-                                                        .totalCartPrice
-                                                }
-                                            </span>
+                                        </span>
+                                        <span className="text-xs  ml-1">$</span>
+                                        <span>
+                                            {cartProducts.data.totalCartPrice}
                                         </span>
                                     </h3>
                                     <a
@@ -70,7 +67,7 @@ export default function Cart() {
                                 <p>There are not items yet.</p>
                                 <Link
                                     to="/"
-                                    className="btn-primary text-nowrap"
+                                    className="btn-primary text-nowrap "
                                 >
                                     Add your first product to cart
                                 </Link>
@@ -104,13 +101,16 @@ export default function Cart() {
 
                                                     <div className="col-span-8 md:col-span-9 lg:col-span-10  flex  max-lg:flex-col max-md:gap-4 justify-center items-start md:items-center">
                                                         <div className="flex flex-col gap-1 w-full ">
-                                                            <h3 className="font-bold text-xl max-lg:line-clamp-1">
+                                                            <Link
+                                                                to={`/product/${product.product._id}`}
+                                                                className="font-bold text-xl max-lg:line-clamp-1 hover:text-primary duration-300"
+                                                            >
                                                                 {
                                                                     product
                                                                         .product
                                                                         .title
                                                                 }
-                                                            </h3>
+                                                            </Link>
                                                             <div className="flex  gap-2 items-center">
                                                                 <span className="mr1-1">
                                                                     Rate :
@@ -228,8 +228,10 @@ export default function Cart() {
                                                                 <span className="font-medium text-sm text-darkPrimary">
                                                                     Total Price
                                                                 </span>
-                                                                <span className="text-base">
-                                                                    $
+                                                                <span className="text-base flex ">
+                                                                    <span className="text-xs">
+                                                                        $
+                                                                    </span>
                                                                     {product.price *
                                                                         product.count}
                                                                 </span>

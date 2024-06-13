@@ -22,7 +22,7 @@ export default function UserProvider({ children }) {
                     </span>
                 ),
             });
-            window.location.href = "http://localhost:5175/";
+            window.location.href = "http://localhost:5173/";
         }, 1000);
     }
     return (

@@ -44,7 +44,9 @@ export default function ProductCard({ products }) {
                     {priceAfterDiscount ? (
                         <span className="size-1 p-7 flex justify-center items-center bg-darkPrimary rounded-full rounded-tl-none text-primary  absolute top-0 left-0">
                             <span className=" flex flex-col   items-center font-bold text-orange-400">
-                                <span className="text-sm">{finaleSale}%</span>
+                                <span className="text-sm flex items-center font-normal text-nowrap">
+                                    - {finaleSale}%
+                                </span>
                                 <span className="text-sm text-primary">
                                     Sale
                                 </span>

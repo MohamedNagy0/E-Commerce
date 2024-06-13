@@ -16,11 +16,12 @@ export default function ProductDetails() {
 
     let { productId } = useParams();
     async function getProductDetails() {
-        let { data } = await axios.get(
-            `https://ecommerce.routemisr.com/api/v1/products/${productId}`
-        );
-        setData(data.data);
-        console.log(data.data);
+        try {
+            let { data } = await axios.get(
+                `https://ecommerce.routemisr.com/api/v1/products/${productId}`
+            );
+            setData(data.data);
+        } catch (error) {}
     }
 
     useEffect(() => {
