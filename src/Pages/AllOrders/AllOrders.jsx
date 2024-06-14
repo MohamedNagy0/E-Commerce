@@ -107,7 +107,9 @@ export default function AllOrders() {
                                                         Price :
                                                     </span>
                                                     <span>
-                                                        ${product.price}
+                                                        $
+                                                        {product.price *
+                                                            product.count}
                                                     </span>
                                                 </div>
                                                 <div className="text-primary text-base ">
@@ -130,10 +132,6 @@ export default function AllOrders() {
                                                             product.product
                                                                 .brand?.name
                                                         }
-                                                    </span>
-
-                                                    <span className="text-green-500">
-                                                        Available
                                                     </span>
                                                 </div>
                                             </div>
@@ -200,7 +198,7 @@ export default function AllOrders() {
                                         <h2>Confirmed</h2>
                                         <h2>Out for delivery</h2>
                                         <h2>Delivered</h2>
-                                        <h2>Payed</h2>
+                                        <h2>Paid</h2>
                                     </div>
                                 </div>
                             </div>

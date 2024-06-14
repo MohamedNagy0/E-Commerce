@@ -344,7 +344,7 @@ export default function Cart() {
                         <CheckOut
                             totalPrice={cartProducts.data.totalCartPrice}
                             userPhone={
-                                userOrders ? userOrders[0].user.phone : ""
+                                userOrders ? userOrders[0]?.user.phone : ""
                             }
                         />
                     ) : (

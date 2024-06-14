@@ -12,10 +12,7 @@ export default function Register() {
     const [errorMessage, setErrorMessage] = useState(null);
 
     function clearInputs() {
-        formik.values.name = "";
-        formik.values.phone = "";
-        formik.values.password = "";
-        formik.values.rePassword = "";
+        formik.values.email = "";
     }
 
     function changeTouchedValue() {

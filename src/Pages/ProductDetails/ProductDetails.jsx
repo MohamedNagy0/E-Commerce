@@ -85,23 +85,38 @@ export default function ProductDetails() {
                                         <div className="flex justify-between items-center">
                                             <div className="flex items-center gap-2">
                                                 {data.priceAfterDiscount ? (
-                                                    <span className="text-sm line-through font-light text-slate-400">
-                                                        ${data.price}
+                                                    <span className="text-sm  flex items-center  line-through font-light text-slate-400">
+                                                        <span className="text-xs self-start">
+                                                            $
+                                                        </span>
+                                                        <span>
+                                                            {data.price}
+                                                        </span>
                                                     </span>
                                                 ) : (
                                                     ""
                                                 )}
 
                                                 {data.priceAfterDiscount ? (
-                                                    <span className="text-lg font-semibold text-primary">
-                                                        $
-                                                        {
-                                                            data.priceAfterDiscount
-                                                        }
+                                                    <span className="text-lg font-semibold flex items-center text-primary">
+                                                        <span className="text-xs self-start">
+                                                            $
+                                                        </span>
+                                                        <span>
+                                                            {" "}
+                                                            {
+                                                                data.priceAfterDiscount
+                                                            }
+                                                        </span>
                                                     </span>
                                                 ) : (
-                                                    <span className="text-lg font-semibold text-primary">
-                                                        ${data.price}
+                                                    <span className="text-lg flex items-center font-semibold text-primary">
+                                                        <span className="text-xs self-start">
+                                                            $
+                                                        </span>
+                                                        <span>
+                                                            {data.price}
+                                                        </span>
                                                     </span>
                                                 )}
                                             </div>
