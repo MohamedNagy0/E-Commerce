@@ -104,7 +104,21 @@ export default function ProductCard({ products }) {
                             {" "}
                             <span className="text-sm self-start">$</span>{" "}
                             <span className="text-xl font-semibold">
-                                {price}
+                                {`${
+                                    price.toString().length == 4
+                                        ? price.toString().slice(0, 1) +
+                                          "," +
+                                          price.toString().slice(1)
+                                        : price.toString().length == 5
+                                        ? price.toString().slice(0, 2) +
+                                          "," +
+                                          price.toString().slice(2)
+                                        : price.toString().length == 6
+                                        ? price.toString().slice(0, 3) +
+                                          "," +
+                                          price.toString().slice(3)
+                                        : price
+                                }`}
                             </span>
                         </span>
                         <div className="rating flex gap-2 items-center">

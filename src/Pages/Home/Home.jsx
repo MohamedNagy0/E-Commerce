@@ -16,8 +16,10 @@ export default function Home() {
         };
 
         let { data } = await axios.request(options);
+        console.log(data);
         setAllProductsList(data.data);
     }
+
     useEffect(() => {
         getAllProducts();
     }, []);
