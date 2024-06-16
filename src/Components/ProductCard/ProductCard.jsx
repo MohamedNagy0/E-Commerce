@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
+import formatMoney from "../../Helpers/helpers";
 
 export default function ProductCard({ products }) {
     const { addProductToCart } = useContext(CartContext);
     const { token } = useContext(userContext);
     const [finaleSale, setFinaleSale] = useState(null);
     let navigate = useNavigate();
+    const { setIsOpen } = useContext(CartContext);
 
     let {
         category,
@@ -26,6 +28,7 @@ export default function ProductCard({ products }) {
         const sale = 100 - calculation;
         setFinaleSale(Math.floor(sale));
     };
+
     useEffect(() => {
         calcSale(price, priceAfterDiscount);
     }, []);
@@ -65,7 +68,10 @@ export default function ProductCard({ products }) {
                                 if (token) {
                                     addProductToCart({ productId: id });
                                 } else {
-                                    navigate("/auth/login");
+                                    setIsOpen(true);
+                                    document
+                                        .querySelector("body")
+                                        .classList.add("overflow-hidden");
                                 }
                             }}
                             className="icon  opacity-0 translate-y-20 group-hover:translate-y-0 group-hover:opacity-100  hover:bg-darkPrimary duration-700 cursor-pointer bg-primary flex justify-center items-center size-12 bg-opacity-70 rounded-full text-white"
@@ -101,25 +107,7 @@ export default function ProductCard({ products }) {
                     </header>
                     <footer className="flex justify-between mt-2 items-center">
                         <span className="text-primary flex  items-center">
-                            {" "}
-                            <span className="text-sm self-start">$</span>{" "}
-                            <span className="text-xl font-semibold">
-                                {`${
-                                    price.toString().length == 4
-                                        ? price.toString().slice(0, 1) +
-                                          "," +
-                                          price.toString().slice(1)
-                                        : price.toString().length == 5
-                                        ? price.toString().slice(0, 2) +
-                                          "," +
-                                          price.toString().slice(2)
-                                        : price.toString().length == 6
-                                        ? price.toString().slice(0, 3) +
-                                          "," +
-                                          price.toString().slice(3)
-                                        : price
-                                }`}
-                            </span>
+                            {formatMoney(price)}
                         </span>
                         <div className="rating flex gap-2 items-center">
                             <span>

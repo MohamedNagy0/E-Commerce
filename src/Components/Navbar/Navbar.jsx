@@ -9,8 +9,16 @@ export default function Navbar() {
     const { getAllProductsCart, cartProducts, cartAnimation } =
         useContext(CartContext);
     useEffect(() => {
-        getAllProductsCart();
+        if (token) {
+            getAllProductsCart();
+        }
     }, []);
+
+    useEffect(() => {
+        if (token) {
+            getAllProductsCart();
+        }
+    }, [token]);
 
     return (
         <>

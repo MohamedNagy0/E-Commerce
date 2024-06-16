@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { CartContext } from "../../Context/Cart.context";
 import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
+import formatMoney from "../../Helpers/helpers";
 
 export default function AllOrders() {
     const { getUserOrders, userOrders } = useContext(CartContext);
@@ -102,12 +103,12 @@ export default function AllOrders() {
                                                    `}</span>
                                                 </Link>
 
-                                                <div className="text-primary text-base ">
+                                                <div className="text-primary text-base flex items-center ">
                                                     <span className=" text-darkPrimary mr-1">
                                                         Price :
                                                     </span>
-                                                    <span>
-                                                        $
+                                                    <span className="flex gap-1">
+                                                        <span>EGP</span>
                                                         {product.price *
                                                             product.count}
                                                     </span>
@@ -249,7 +250,7 @@ export default function AllOrders() {
                                         </span>
                                         <span className="font-bold text-xl">
                                             {" "}
-                                            {order.totalOrderPrice}
+                                            {formatMoney(order.totalOrderPrice)}
                                         </span>
                                     </span>
                                 </h2>

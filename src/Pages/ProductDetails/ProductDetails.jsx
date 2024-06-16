@@ -6,12 +6,14 @@ import ReactImageGallery from "react-image-gallery";
 import { CartContext } from "../../Context/Cart.context";
 import BackButton from "../../Components/BackButton/BackButton";
 import { userContext } from "../../Context/User.context";
+import formatMoney from "../../Helpers/helpers";
 
 // https://ecommerce.routemisr.com/api/v1/products/6428de2adc1175abc65ca05b
 export default function ProductDetails() {
     const [data, setData] = useState(null);
-    const { addProductToCart } = useContext(CartContext);
+    const { addProductToCart, setIsOpen } = useContext(CartContext);
     const { token } = useContext(userContext);
+
     let navigate = useNavigate();
 
     let { productId } = useParams();
@@ -86,11 +88,10 @@ export default function ProductDetails() {
                                             <div className="flex items-center gap-2">
                                                 {data.priceAfterDiscount ? (
                                                     <span className="text-sm  flex items-center  line-through font-light text-slate-400">
-                                                        <span className="text-xs self-start">
-                                                            $
-                                                        </span>
                                                         <span>
-                                                            {data.price}
+                                                            {formatMoney(
+                                                                data.price
+                                                            )}
                                                         </span>
                                                     </span>
                                                 ) : (
@@ -99,23 +100,18 @@ export default function ProductDetails() {
 
                                                 {data.priceAfterDiscount ? (
                                                     <span className="text-lg font-semibold flex items-center text-primary">
-                                                        <span className="text-xs self-start">
-                                                            $
-                                                        </span>
                                                         <span>
-                                                            {" "}
-                                                            {
+                                                            {formatMoney(
                                                                 data.priceAfterDiscount
-                                                            }
+                                                            )}
                                                         </span>
                                                     </span>
                                                 ) : (
                                                     <span className="text-lg flex items-center font-semibold text-primary">
-                                                        <span className="text-xs self-start">
-                                                            $
-                                                        </span>
                                                         <span>
-                                                            {data.price}
+                                                            {formatMoney(
+                                                                data.price
+                                                            )}
                                                         </span>
                                                     </span>
                                                 )}
@@ -129,7 +125,14 @@ export default function ProductDetails() {
                                                             productId: data.id,
                                                         });
                                                     } else {
-                                                        navigate("/auth/login");
+                                                        setIsOpen(true);
+                                                        document
+                                                            .querySelector(
+                                                                "body"
+                                                            )
+                                                            .classList.add(
+                                                                "overflow-hidden"
+                                                            );
                                                     }
                                                 }}
                                                 className="btn-primary w-full group"

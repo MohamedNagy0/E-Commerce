@@ -11,6 +11,7 @@ export default function CartProvider({ children }) {
     const [cartProducts, setCartProducts] = useState(null);
     const [userOrders, setUserOrders] = useState(null);
     const [cartAnimation, setCartAnimation] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     async function addProductToCart({ productId }) {
         let toastId;
@@ -80,7 +81,6 @@ export default function CartProvider({ children }) {
                 method: "GET",
             };
             const { data } = await axios.request(options);
-            console.log(data);
 
             setUserOrders(data);
         } catch (error) {}
@@ -242,6 +242,8 @@ export default function CartProvider({ children }) {
                     cartAnimation,
                     getUserOrders,
                     userOrders,
+                    isOpen,
+                    setIsOpen,
                 }}
             >
                 {children}

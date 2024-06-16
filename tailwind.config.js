@@ -25,7 +25,6 @@ export default {
                 primary: "#09c",
                 darkPrimary: "rgb(8, 47, 73)",
                 lightPrimary: "rgb(2 173 227)",
-
                 light: "#f0f3f2",
                 rating: "#ffc908",
             },

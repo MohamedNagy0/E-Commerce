@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import CheckOut from "../../Components/CheckOut/CheckOut";
 import BackButton from "../../Components/BackButton/BackButton";
+import formatMoney from "../../Helpers/helpers";
 
 export default function Cart() {
     const [placeHolderImage, setPlaceHolderImage] = useState("block");
@@ -155,10 +156,9 @@ export default function Cart() {
                                                                     Price :
                                                                 </span>
                                                                 <span>
-                                                                    $
-                                                                    {
+                                                                    {formatMoney(
                                                                         product.price
-                                                                    }
+                                                                    )}
                                                                 </span>
                                                             </div>
 
@@ -263,8 +263,9 @@ export default function Cart() {
                                                                 </span>
                                                                 <span className="text-base flex ">
                                                                     <span className="text-xs">
-                                                                        $
+                                                                        EGP
                                                                     </span>
+
                                                                     {product.price *
                                                                         product.count}
                                                                 </span>
