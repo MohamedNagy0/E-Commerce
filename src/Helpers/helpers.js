@@ -6,5 +6,7 @@ export default function formatMoney(
     return new Intl.NumberFormat(locale, {
         style: "currency",
         currency: currency,
-    }).format(amount);
+    })
+        .format(amount)
+        .split(".00");
 }
