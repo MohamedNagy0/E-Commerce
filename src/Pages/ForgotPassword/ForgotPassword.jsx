@@ -1,53 +1,18 @@
-import axios from "axios";
 import { Formik, useFormik } from "formik";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { userContext } from "../../Context/User.context";
 
 export default function ForgotPassword() {
-    let navigate = useNavigate();
+    const { ForgotPassword } = useContext(userContext);
 
-    function clearInputs() {
-        formik.values.email = "";
-    }
-
-    async function formSubmit(values) {
-        let toastId;
-
-        try {
-            const options = {
-                method: "POST",
-                url: "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
-                data: values,
-            };
-            toastId = toast.loading("Waiting...");
-
-            const { data } = await axios.request(options);
-            console.log(data);
-            if (data.statusMsg == "success") {
-                toast.dismiss(toastId);
-                toast(data.message, {
-                    duration: 2000,
-                    position: "top-center",
-                    icon: (
-                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                            <i className="fa-solid fa-check text-white"></i>
-                        </span>
-                    ),
-                });
-                navigate("/auth/verifyCode");
-            }
-        } catch (error) {
-            clearInputs();
-            toast.dismiss(toastId);
-            toast.error(error.response.data.message);
-        }
-    }
     const formik = useFormik({
         initialValues: {
             email: "",
         },
-        onSubmit: formSubmit,
+        onSubmit: ForgotPassword,
     });
+
     return (
         <>
             <section className="flex flex-col justify-center items-center gap-8 mt-12">

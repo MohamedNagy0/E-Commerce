@@ -34,9 +34,8 @@ export default function VerifyCode() {
                         </span>
                     ),
                 });
-                //!........................................!
-                navigate("/");
-                //!........................................!
+
+                navigate("/auth/resetPassword");
             }
         } catch (error) {
             clearInputs();
@@ -50,6 +49,7 @@ export default function VerifyCode() {
         },
         onSubmit: formSubmit,
     });
+
     return (
         <>
             <section>
@@ -69,11 +69,20 @@ export default function VerifyCode() {
                             onChange={formik.handleChange}
                         />
                     </div>
-                    <div className="text-center">
-                        <button type="submit" className="btn-primary py-1 ">
-                            Next
-                        </button>
-                    </div>
+                    <footer className="text-center">
+                        <div className="w-full">
+                            <button type="submit" className="btn-primary py-1">
+                                Next
+                            </button>
+                        </div>
+
+                        <Link
+                            className="text-xs text-primary font-bold inline-block mt-4 hover:underline"
+                            to="/auth/forgotPassword"
+                        >
+                            Back Forgot your password
+                        </Link>
+                    </footer>
                 </form>
             </section>
         </>

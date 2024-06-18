@@ -20,6 +20,7 @@ import ProtectedAuth from "./Components/Protect/ProtectedAuth/ProtectedAuth";
 import ProtectedCart from "./Components/Protect/ProtectedCart/ProtectedCart";
 import ProtectedAllOrders from "./Components/Protect/ProtectedAllOrders/ProtectedAllOrders";
 import { useState } from "react";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 
 function App() {
     const [theme, setTheme] = useState("light");
@@ -88,6 +89,10 @@ function App() {
                 {
                     path: "verifyCode",
                     element: <VerifyCode />,
+                },
+                {
+                    path: "resetPassword",
+                    element: <ResetPassword />,
                 },
             ],
         },

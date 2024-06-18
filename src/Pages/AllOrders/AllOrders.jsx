@@ -220,7 +220,7 @@ export default function AllOrders() {
                                     </span>
                                     <span className="flex items-center text-primary">
                                         <span className="self-start text-xs">
-                                            $
+                                            EGP
                                         </span>
                                         <span className="flex  font-bold">
                                             {order.shippingPrice}
@@ -233,7 +233,7 @@ export default function AllOrders() {
                                     </span>
                                     <span className="flex items-center text-primary">
                                         <span className="self-start text-xs">
-                                            $
+                                            EGP
                                         </span>
                                         <span className="flex  font-bold">
                                             {order.taxPrice}
@@ -245,9 +245,6 @@ export default function AllOrders() {
                                         Total Order Price :{" "}
                                     </span>
                                     <span className="flex text-primary">
-                                        <span className="self-start text-sm">
-                                            $
-                                        </span>
                                         <span className="font-bold text-xl">
                                             {" "}
                                             {formatMoney(order.totalOrderPrice)}
