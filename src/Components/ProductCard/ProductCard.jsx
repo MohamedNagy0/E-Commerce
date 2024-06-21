@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import formatMoney from "../../Helpers/helpers";
@@ -8,7 +8,6 @@ export default function ProductCard({ products }) {
     const { addProductToCart } = useContext(CartContext);
     const { token } = useContext(userContext);
     const [finaleSale, setFinaleSale] = useState(null);
-    let navigate = useNavigate();
     const { setIsOpen } = useContext(CartContext);
 
     let {
@@ -21,7 +20,6 @@ export default function ProductCard({ products }) {
         id,
         brand,
         imageCover,
-        index,
     } = products;
 
     const calcSale = function (price, priceAfterDiscount) {

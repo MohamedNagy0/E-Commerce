@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Loading from "../Loading/Loading";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import HomeSilder from "../../Components/HomeSilder/HomeSilder";
@@ -8,11 +7,7 @@ import Title from "../../Components/Title/Title";
 import { CartContext } from "../../Context/Cart.context";
 
 export default function Home() {
-    const { getAllProducts, allProductsList } = useContext(CartContext);
-
-    useEffect(() => {
-        getAllProducts();
-    }, []);
+    const { allProductsList } = useContext(CartContext);
 
     return (
         <>

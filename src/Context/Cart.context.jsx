@@ -258,6 +258,7 @@ export default function CartProvider({ children }) {
                     setIsOpen,
                     getAllProducts,
                     allProductsList,
+                    setAllProductsList,
                 }}
             >
                 {children}
