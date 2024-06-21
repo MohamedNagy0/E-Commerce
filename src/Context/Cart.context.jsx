@@ -15,7 +15,6 @@ export default function CartProvider({ children }) {
     const [allProductsList, setAllProductsList] = useState(null);
 
     async function getAllProducts() {
-        //https://ecommerce.routemisr.com/api/v1/products
         const options = {
             method: "GET",
             url: "https://ecommerce.routemisr.com/api/v1/products",
@@ -258,7 +257,6 @@ export default function CartProvider({ children }) {
                     setIsOpen,
                     getAllProducts,
                     allProductsList,
-                    setAllProductsList,
                 }}
             >
                 {children}

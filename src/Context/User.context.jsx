@@ -2,7 +2,6 @@ import axios from "axios";
 import { Formik } from "formik";
 import { createContext, useState } from "react";
 import toast from "react-hot-toast";
-
 export const userContext = createContext(null);
 
 export default function UserProvider({ children }) {
