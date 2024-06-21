@@ -12,6 +12,18 @@ export default function CartProvider({ children }) {
     const [userOrders, setUserOrders] = useState(null);
     const [cartAnimation, setCartAnimation] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [allProductsList, setAllProductsList] = useState(null);
+
+    async function getAllProducts() {
+        //https://ecommerce.routemisr.com/api/v1/products
+        const options = {
+            method: "GET",
+            url: "https://ecommerce.routemisr.com/api/v1/products",
+        };
+
+        let { data } = await axios.request(options);
+        setAllProductsList(data.data);
+    }
 
     async function addProductToCart({ productId }) {
         let toastId;
@@ -244,6 +256,8 @@ export default function CartProvider({ children }) {
                     userOrders,
                     isOpen,
                     setIsOpen,
+                    getAllProducts,
+                    allProductsList,
                 }}
             >
                 {children}

@@ -21,6 +21,7 @@ export default function ProductCard({ products }) {
         id,
         brand,
         imageCover,
+        index,
     } = products;
 
     const calcSale = function (price, priceAfterDiscount) {
@@ -96,6 +97,7 @@ export default function ProductCard({ products }) {
                                 {title}
                             </Link>
                         </h2>
+
                         <h2 className="line-clamp-1 font-semibold my-1">
                             {category.name}
                         </h2>

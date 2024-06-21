@@ -1,23 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import HomeSilder from "../../Components/HomeSilder/HomeSilder";
 import CategorySilder from "../../Components/CategorySilder/CategorySidler";
 import Title from "../../Components/Title/Title";
+import { CartContext } from "../../Context/Cart.context";
 
 export default function Home() {
-    //https://ecommerce.routemisr.com/api/v1/products
-    const [allProductsList, setAllProductsList] = useState(null);
-    async function getAllProducts() {
-        const options = {
-            method: "GET",
-            url: "https://ecommerce.routemisr.com/api/v1/products",
-        };
-
-        let { data } = await axios.request(options);
-        setAllProductsList(data.data);
-    }
+    const { getAllProducts, allProductsList } = useContext(CartContext);
 
     useEffect(() => {
         getAllProducts();
