@@ -13,15 +13,27 @@ export default function CartProvider({ children }) {
     const [cartAnimation, setCartAnimation] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [allProductsList, setAllProductsList] = useState(null);
+    const [allHomeProducts, setAllHomeProducts] = useState(null);
+    const [productLimitation, setProductLimitation] = useState(10);
 
     async function getAllProducts() {
         const options = {
             method: "GET",
-            url: "https://ecommerce.routemisr.com/api/v1/products",
+            url: `https://ecommerce.routemisr.com/api/v1/products?limit=${productLimitation}`,
         };
 
         let { data } = await axios.request(options);
         setAllProductsList(data.data);
+    }
+
+    async function getAllHomeProducts() {
+        const options = {
+            method: "GET",
+            url: "https://ecommerce.routemisr.com/api/v1/products?limit=12",
+        };
+
+        let { data } = await axios.request(options);
+        setAllHomeProducts(data.data);
     }
 
     async function addProductToCart({ productId }) {
@@ -257,6 +269,10 @@ export default function CartProvider({ children }) {
                     setIsOpen,
                     getAllProducts,
                     allProductsList,
+                    setProductLimitation,
+                    productLimitation,
+                    getAllHomeProducts,
+                    allHomeProducts,
                 }}
             >
                 {children}

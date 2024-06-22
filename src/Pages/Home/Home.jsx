@@ -7,15 +7,15 @@ import Title from "../../Components/Title/Title";
 import { CartContext } from "../../Context/Cart.context";
 
 export default function Home() {
-    const { getAllProducts, allProductsList } = useContext(CartContext);
+    const { getAllHomeProducts, allHomeProducts } = useContext(CartContext);
 
     useEffect(() => {
-        getAllProducts();
+        getAllHomeProducts();
     }, []);
 
     return (
         <>
-            {allProductsList ? (
+            {allHomeProducts ? (
                 <section>
                     <HomeSilder />
 
@@ -26,7 +26,7 @@ export default function Home() {
                     </div>
 
                     <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
-                        {allProductsList.map((obj, index) => {
+                        {allHomeProducts.map((obj, index) => {
                             return (
                                 <ProductCard
                                     products={obj}
