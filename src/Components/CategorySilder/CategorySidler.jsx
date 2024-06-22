@@ -1,24 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../../Pages/Loading/Loading";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import styles from "./Category.module.css";
+import { CartContext } from "../../Context/Cart.context";
 
 //https://ecommerce.routemisr.com/api/v1/categories
 
 export default function CategorySilder() {
-    const [AllCategories, setAllCategories] = useState(null);
+    const { getCategories, AllCategories } = useContext(CartContext);
 
-    async function getCategories() {
-        const options = {
-            method: "GET",
-            url: "https://ecommerce.routemisr.com/api/v1/categories",
-        };
-        let { data } = await axios.request(options);
-        setAllCategories(data.data);
-    }
     useEffect(() => {
         getCategories();
     }, []);

@@ -15,11 +15,15 @@ export default function CartProvider({ children }) {
     const [allProductsList, setAllProductsList] = useState(null);
     const [allHomeProducts, setAllHomeProducts] = useState(null);
     const [productLimitation, setProductLimitation] = useState(10);
+    const [AllCategories, setAllCategories] = useState(null);
+    const [range, setRange] = useState(50000);
+    const [priceSort, setPriceSort] = useState("+");
+    const url = `https://ecommerce.routemisr.com/api/v1/products?limit=${productLimitation}&sort=${priceSort}price&price[lte]=${range}`;
 
     async function getAllProducts() {
         const options = {
             method: "GET",
-            url: `https://ecommerce.routemisr.com/api/v1/products?limit=${productLimitation}`,
+            url,
         };
 
         let { data } = await axios.request(options);
@@ -29,11 +33,20 @@ export default function CartProvider({ children }) {
     async function getAllHomeProducts() {
         const options = {
             method: "GET",
-            url: "https://ecommerce.routemisr.com/api/v1/products?limit=12",
+            url: `https://ecommerce.routemisr.com/api/v1/products`,
         };
 
         let { data } = await axios.request(options);
         setAllHomeProducts(data.data);
+    }
+
+    async function getCategories() {
+        const options = {
+            method: "GET",
+            url: "https://ecommerce.routemisr.com/api/v1/categories",
+        };
+        let { data } = await axios.request(options);
+        setAllCategories(data.data);
     }
 
     async function addProductToCart({ productId }) {
@@ -273,6 +286,12 @@ export default function CartProvider({ children }) {
                     productLimitation,
                     getAllHomeProducts,
                     allHomeProducts,
+                    getCategories,
+                    AllCategories,
+                    range,
+                    setRange,
+                    url,
+                    setPriceSort,
                 }}
             >
                 {children}

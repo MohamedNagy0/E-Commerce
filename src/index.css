@@ -48,6 +48,28 @@ textarea:focus {
     backdrop-filter: blur(3px);
 }
 
+input[type="range"]:focus,
+input[type="radio"]:focus {
+    box-shadow: none;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    background-color: #f0f3f2;
+    cursor: pointer;
+    box-shadow: none;
+    border-radius: 20px;
+    padding: 1px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #09c;
+}
+
 /* End Basic Style */
 
 /*  Start scroll style */
