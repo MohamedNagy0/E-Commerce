@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import ReactImageGallery from "react-image-gallery";
 import { CartContext } from "../../Context/Cart.context";
@@ -13,8 +13,6 @@ export default function ProductDetails() {
     const [data, setData] = useState(null);
     const { addProductToCart, setIsOpen } = useContext(CartContext);
     const { token } = useContext(userContext);
-
-    let navigate = useNavigate();
 
     let { productId } = useParams();
     async function getProductDetails() {

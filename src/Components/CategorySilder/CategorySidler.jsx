@@ -53,7 +53,7 @@ export default function CategorySilder() {
                             {AllCategories.map((obj) => {
                                 return (
                                     <SwiperSlide key={obj._id}>
-                                        <Link to={`/categories/${obj._id}`}>
+                                        <Link to={`/category/${obj._id}`}>
                                             <img
                                                 src={obj.image}
                                                 className="w-full h-72 object-cover cursor-pointer"

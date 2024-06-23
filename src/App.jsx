@@ -21,6 +21,7 @@ import ProtectedCart from "./Components/Protect/ProtectedCart/ProtectedCart";
 import ProtectedAllOrders from "./Components/Protect/ProtectedAllOrders/ProtectedAllOrders";
 import { useState } from "react";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import BrandsDetails from "./Pages/BrandsDetails/BrandsDetails";
 
 function App() {
     const [theme, setTheme] = useState("light");
@@ -39,8 +40,12 @@ function App() {
                 { path: "/product/:productId", element: <ProductDetails /> },
                 { path: "/categories", element: <Categories /> },
                 {
-                    path: "/categories/:categoryId",
+                    path: "/category/:categoryId",
                     element: <CategoriesDetails />,
+                },
+                {
+                    path: "/brand/:brandId",
+                    element: <BrandsDetails />,
                 },
                 { path: "/brands", element: <Brands /> },
                 {

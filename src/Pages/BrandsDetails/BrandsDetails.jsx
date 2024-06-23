@@ -4,39 +4,41 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BackButton from "../../Components/BackButton/BackButton";
 
-export default function CategoriesDetails() {
-    const [specificCategoryProducts, setSpecificCategoryProducts] =
-        useState(null);
+export default function BrandsDetails() {
+    const [specificBrandProducts, setSpecificBrandProducts] = useState(null);
+    let { brandId } = useParams();
 
-    let { categoryId } = useParams();
-
-    async function getSpecificCategory() {
+    async function getSpecificBrand() {
         try {
             const options = {
                 method: "GET",
-                url: `https://ecommerce.routemisr.com/api/v1/products?category[in]=${categoryId}`,
+                url: `https://ecommerce.routemisr.com/api/v1/products?brand[in]=${brandId}`,
             };
 
             let { data } = await axios.request(options);
-            setSpecificCategoryProducts(data.data);
+            setSpecificBrandProducts(data.data);
         } catch (error) {}
     }
 
     useEffect(() => {
-        getSpecificCategory();
+        getSpecificBrand();
     }, []);
     return (
         <>
-            {specificCategoryProducts ? (
+            {specificBrandProducts ? (
                 <>
-                    {specificCategoryProducts.length == 0 ? (
+                    <div className="mb-4 flex justify-end ">
+                        <BackButton />
+                    </div>
+                    {specificBrandProducts.length == 0 ? (
                         <div className="flex justify-center items-center">
                             <img src={noProductFound} alt="noProductFound" />
                         </div>
                     ) : (
                         <section className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
-                            {specificCategoryProducts.map((obj) => {
+                            {specificBrandProducts.map((obj) => {
                                 return (
                                     <ProductCard products={obj} key={obj.id} />
                                 );

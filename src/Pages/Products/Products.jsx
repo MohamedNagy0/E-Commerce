@@ -14,12 +14,13 @@ export default function Products() {
         productLimitation,
         setRange,
         range,
-        url,
+        allProductsUrl,
         setPriceSort,
     } = useContext(CartContext);
     useEffect(() => {
         getAllProducts();
-    }, [url]);
+        setPriceSort("+");
+    }, [allProductsUrl]);
 
     return (
         <>
@@ -65,7 +66,7 @@ export default function Products() {
                                                 htmlFor="priceSmaller"
                                             >
                                                 <span>smaller to Bigger</span>
-                                                <span className="size-3 rounded-full p-[5px] flex justify-center items-center border border-primary ">
+                                                <span className="size-3 rounded-full p-[6px] flex justify-center items-center border border-primary ">
                                                     {checked ? (
                                                         <span className="size-1 rounded-full p-[3px] inline-block bg-primary"></span>
                                                     ) : (
@@ -91,7 +92,7 @@ export default function Products() {
                                                 htmlFor="priceBigger"
                                             >
                                                 <span>Bigger to smaller</span>
-                                                <span className="size-3 rounded-full p-[5px] border border-primary flex justify-center items-center">
+                                                <span className="size-3 rounded-full p-[6px] border border-primary flex justify-center items-center">
                                                     {!checked ? (
                                                         <span className="size-1 rounded-full p-[3px] inline-block bg-primary"></span>
                                                     ) : (
