@@ -3,6 +3,7 @@ import { CartContext } from "../../Context/Cart.context";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import Loading from "../Loading/Loading";
 import formatMoney from "../../Helpers/helpers";
+import BackButton from "../../Components/BackButton/BackButton";
 
 export default function Products() {
     const [open, setOpen] = useState(false);
@@ -144,16 +145,19 @@ export default function Products() {
                         ""
                     )}
 
-                    <h2 className="mb-6 p-2">
-                        <span
-                            onClick={() => {
-                                setOpen(!open);
-                            }}
-                            className="text-primary px-6 py-2 border border-primary cursor-pointer"
-                        >
-                            Filter & Sort
-                        </span>
-                    </h2>
+                    <div className="flex items-center justify-between">
+                        <h2 className="mb-6 p-2">
+                            <span
+                                onClick={() => {
+                                    setOpen(!open);
+                                }}
+                                className="text-primary px-6 py-2 border border-primary cursor-pointer"
+                            >
+                                Filter & Sort
+                            </span>
+                        </h2>
+                        <BackButton />
+                    </div>
 
                     <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
                         {allProductsList.map((obj) => {

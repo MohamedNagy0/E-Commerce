@@ -50,7 +50,7 @@ export default function AllOrders() {
                                     </h3>
                                 </div>
                                 <Link
-                                    to="/"
+                                    to="/products"
                                     className="btn-primary text-nowrap px-3 py-1 text-sm ml-20 max-lg:self-start"
                                 >
                                     Add new items

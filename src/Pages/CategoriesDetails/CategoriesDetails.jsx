@@ -4,6 +4,7 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BackButton from "../../Components/BackButton/BackButton";
 
 export default function CategoriesDetails() {
     const [specificCategoryProducts, setSpecificCategoryProducts] =
@@ -30,6 +31,9 @@ export default function CategoriesDetails() {
         <>
             {specificCategoryProducts ? (
                 <>
+                    <div className="flex justify-end mb-4">
+                        <BackButton />
+                    </div>
                     {specificCategoryProducts.length == 0 ? (
                         <div className="flex justify-center items-center">
                             <img src={noProductFound} alt="noProductFound" />

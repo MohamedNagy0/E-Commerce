@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import { Navigate, useNavigate } from "react-router-dom";
+import formatMoney from "../../Helpers/helpers";
 
 export default function CheckOut({ totalPrice, userPhone }) {
     const navigate = useNavigate();
@@ -167,7 +168,7 @@ export default function CheckOut({ totalPrice, userPhone }) {
                     <div className="flex  gap-4 items-center">
                         <span className="font-bold">SubTotal :</span>
                         <span className="text-primary font-semibold">
-                            ${totalPrice}
+                            {formatMoney(totalPrice)}
                         </span>
                     </div>
                     <div>
