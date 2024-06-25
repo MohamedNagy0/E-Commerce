@@ -138,16 +138,9 @@ export default function ProductDetails() {
                                                                 deleteProductFromWishList(
                                                                     productId
                                                                 );
-                                                                localStorage.removeItem(
-                                                                    `${productId}${token}`
-                                                                );
                                                             } else {
                                                                 addProductToWishList(
                                                                     productId
-                                                                );
-                                                                localStorage.setItem(
-                                                                    `${productId}${token}`,
-                                                                    `${productId}${token}`
                                                                 );
                                                             }
                                                         }

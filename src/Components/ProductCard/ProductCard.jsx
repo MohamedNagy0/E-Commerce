@@ -68,6 +68,8 @@ export default function ProductCard({ products }) {
                     <div className="layer -translate-y-1/2  flex justify-center items-center gap-4 absolute top-1/2 left-1/2  -translate-x-1/2">
                         <div
                             onClick={() => {
+                                console.log(id);
+
                                 if (token) {
                                     if (
                                         wishListProducts.data.map((product) =>
@@ -78,15 +80,40 @@ export default function ProductCard({ products }) {
                                     ) {
                                         if (favorite) {
                                             deleteProductFromWishList(id);
-                                            localStorage.removeItem(
-                                                `${id}${token}`
-                                            );
+                                            {
+                                                wishListProducts.data.map(
+                                                    (product) =>
+                                                        product.id == id ? (
+                                                            <i
+                                                                key={product.id}
+                                                                className="fa-solid fa-heart text-red-600"
+                                                            ></i>
+                                                        ) : (
+                                                            <i
+                                                                key={product.id}
+                                                                className="fa-regular fa-heart"
+                                                            ></i>
+                                                        )
+                                                );
+                                            }
                                         } else {
                                             addProductToWishList(id);
-                                            localStorage.setItem(
-                                                `${id}${token}`,
-                                                `${id}${token}`
-                                            );
+                                            {
+                                                wishListProducts.data.map(
+                                                    (product) =>
+                                                        product.id == id ? (
+                                                            <i
+                                                                key={product.id}
+                                                                className="fa-solid fa-heart text-red-600"
+                                                            ></i>
+                                                        ) : (
+                                                            <i
+                                                                key={product.id}
+                                                                className="fa-regular fa-heart"
+                                                            ></i>
+                                                        )
+                                                );
+                                            }
                                         }
                                     }
                                 } else {
@@ -98,15 +125,40 @@ export default function ProductCard({ products }) {
                             }}
                             className="icon opacity-0 translate-y-20 group-hover:translate-y-0 group-hover:opacity-100  hover:bg-darkPrimary duration-300 cursor-pointer bg-primary flex justify-center items-center size-12 bg-opacity-70 rounded-full text-white"
                         >
-                            {
-                                <i
-                                    className={`${
-                                        localStorage.getItem(`${id}${token}`)
-                                            ? "fa-solid text-red-600 "
-                                            : "fa-regular"
-                                    }  fa-heart`}
-                                ></i>
-                            }
+                            {wishListProducts ? (
+                                <>
+                                    {wishListProducts.data.map((product) => {
+                                        if (product.id == id) {
+                                            return (
+                                                <i
+                                                    key={product.id}
+                                                    className="fa-solid text-red-600 fa-heart"
+                                                ></i>
+                                            );
+                                        } else {
+                                            return (
+                                                <i
+                                                    key={product._id}
+                                                    className="fa-regular fa-heart"
+                                                ></i>
+                                            );
+                                        }
+                                    })}
+                                </>
+                            ) : (
+                                ""
+                            )}
+                            {wishListProducts ? (
+                                <>
+                                    {wishListProducts.data.length == 0 ? (
+                                        <i className="fa-regular fa-heart"></i>
+                                    ) : (
+                                        ""
+                                    )}
+                                </>
+                            ) : (
+                                ""
+                            )}
                         </div>
 
                         <div

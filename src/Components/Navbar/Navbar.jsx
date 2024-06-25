@@ -21,6 +21,7 @@ export default function Navbar() {
     useEffect(() => {
         if (token) {
             getAllProductsCart();
+            getProductsToWishList();
         }
     }, [token]);
 
