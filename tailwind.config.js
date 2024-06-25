@@ -17,6 +17,9 @@ export default {
             },
         },
         extend: {
+            screens: {
+                "md-850": "850px",
+            },
             boxShadow: {
                 myShadow:
                     "rgba(145, 158, 171, 0.2) 0px 2px 4px -1px, rgba(145, 158, 171, 0.14) 0px 4px 5px 0px, rgba(145, 158, 171, 0.12) 0px 1px 10px 0px",

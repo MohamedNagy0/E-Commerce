@@ -26,14 +26,8 @@ export default function Home() {
                     </div>
 
                     <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
-                        {allHomeProducts.map((obj, index) => {
-                            return (
-                                <ProductCard
-                                    products={obj}
-                                    index={index}
-                                    key={obj.id}
-                                />
-                            );
+                        {allHomeProducts.map((obj) => {
+                            return <ProductCard products={obj} key={obj.id} />;
                         })}
                     </div>
                 </section>

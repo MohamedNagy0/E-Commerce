@@ -7,14 +7,20 @@ import { CartContext } from "../../Context/Cart.context";
 import BackButton from "../../Components/BackButton/BackButton";
 import { userContext } from "../../Context/User.context";
 import formatMoney from "../../Helpers/helpers";
+import { WishListContext } from "../../Context/WishList.context";
 
 // https://ecommerce.routemisr.com/api/v1/products/6428de2adc1175abc65ca05b
 export default function ProductDetails() {
     const [data, setData] = useState(null);
     const { addProductToCart, setIsOpen } = useContext(CartContext);
     const { token } = useContext(userContext);
-
+    let favorite = false;
     let { productId } = useParams();
+    const {
+        addProductToWishList,
+        wishListProducts,
+        deleteProductFromWishList,
+    } = useContext(WishListContext);
     async function getProductDetails() {
         try {
             let { data } = await axios.get(
@@ -115,7 +121,64 @@ export default function ProductDetails() {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className="mt-4">
+                                        <div className="mt-4 flex items-center gap-4">
+                                            <button
+                                                onClick={() => {
+                                                    if (token) {
+                                                        if (
+                                                            wishListProducts.data.map(
+                                                                (product) =>
+                                                                    product.id ==
+                                                                    productId
+                                                                        ? (favorite = true)
+                                                                        : (favorite = false)
+                                                            )
+                                                        ) {
+                                                            if (favorite) {
+                                                                deleteProductFromWishList(
+                                                                    productId
+                                                                );
+                                                                localStorage.removeItem(
+                                                                    `${productId}${token}`
+                                                                );
+                                                            } else {
+                                                                addProductToWishList(
+                                                                    productId
+                                                                );
+                                                                localStorage.setItem(
+                                                                    `${productId}${token}`,
+                                                                    `${productId}${token}`
+                                                                );
+                                                            }
+                                                        }
+                                                    } else {
+                                                        setIsOpen(true);
+                                                        document
+                                                            .querySelector(
+                                                                "body"
+                                                            )
+                                                            .classList.add(
+                                                                "overflow-hidden"
+                                                            );
+                                                    }
+                                                }}
+                                                className="btn-primary"
+                                            >
+                                                <span className="icon">
+                                                    {
+                                                        <i
+                                                            className={`${
+                                                                localStorage.getItem(
+                                                                    `${productId}${token}`
+                                                                )
+                                                                    ? "fa-solid text-red-600"
+                                                                    : "fa-regular"
+                                                            }  fa-heart`}
+                                                        ></i>
+                                                    }
+                                                </span>
+                                            </button>
+
                                             <button
                                                 onClick={() => {
                                                     if (token) {

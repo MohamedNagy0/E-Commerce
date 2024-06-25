@@ -31,7 +31,7 @@ export default function Cart() {
             {cartProducts == null ? (
                 <Loading />
             ) : (
-                <section className="bg-light cart-section p-5 mx-4  rounded-3xl">
+                <section className="cart-section bg-light p-5 mx-4  rounded-3xl">
                     <div className="container">
                         <header className="flex justify-between items-start px-2 my-4 gap-4">
                             <div className="flex items-center gap-6">

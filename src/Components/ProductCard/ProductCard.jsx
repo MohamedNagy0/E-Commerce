@@ -1,15 +1,21 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import formatMoney from "../../Helpers/helpers";
+import { WishListContext } from "../../Context/WishList.context";
 
 export default function ProductCard({ products }) {
+    const [finaleSale, setFinaleSale] = useState(null);
     const { addProductToCart } = useContext(CartContext);
     const { token } = useContext(userContext);
-    const [finaleSale, setFinaleSale] = useState(null);
-    let navigate = useNavigate();
     const { setIsOpen } = useContext(CartContext);
+    let favorite = false;
+    const {
+        addProductToWishList,
+        wishListProducts,
+        deleteProductFromWishList,
+    } = useContext(WishListContext);
 
     let {
         category,
@@ -21,7 +27,6 @@ export default function ProductCard({ products }) {
         id,
         brand,
         imageCover,
-        index,
     } = products;
 
     const calcSale = function (price, priceAfterDiscount) {
@@ -61,9 +66,49 @@ export default function ProductCard({ products }) {
                     )}
 
                     <div className="layer -translate-y-1/2  flex justify-center items-center gap-4 absolute top-1/2 left-1/2  -translate-x-1/2">
-                        <div className="icon opacity-0 translate-y-20 group-hover:translate-y-0 group-hover:opacity-100  hover:bg-darkPrimary duration-300 cursor-pointer bg-primary flex justify-center items-center size-12 bg-opacity-70 rounded-full text-white">
-                            <i className="fa-regular fa-heart"></i>
+                        <div
+                            onClick={() => {
+                                if (token) {
+                                    if (
+                                        wishListProducts.data.map((product) =>
+                                            product.id == id
+                                                ? (favorite = true)
+                                                : (favorite = false)
+                                        )
+                                    ) {
+                                        if (favorite) {
+                                            deleteProductFromWishList(id);
+                                            localStorage.removeItem(
+                                                `${id}${token}`
+                                            );
+                                        } else {
+                                            addProductToWishList(id);
+                                            localStorage.setItem(
+                                                `${id}${token}`,
+                                                `${id}${token}`
+                                            );
+                                        }
+                                    }
+                                } else {
+                                    setIsOpen(true);
+                                    document
+                                        .querySelector("body")
+                                        .classList.add("overflow-hidden");
+                                }
+                            }}
+                            className="icon opacity-0 translate-y-20 group-hover:translate-y-0 group-hover:opacity-100  hover:bg-darkPrimary duration-300 cursor-pointer bg-primary flex justify-center items-center size-12 bg-opacity-70 rounded-full text-white"
+                        >
+                            {
+                                <i
+                                    className={`${
+                                        localStorage.getItem(`${id}${token}`)
+                                            ? "fa-solid text-red-600 "
+                                            : "fa-regular"
+                                    }  fa-heart`}
+                                ></i>
+                            }
                         </div>
+
                         <div
                             onClick={() => {
                                 if (token) {

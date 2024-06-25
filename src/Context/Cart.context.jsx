@@ -167,6 +167,7 @@ export default function CartProvider({ children }) {
             setCartAnimation(false);
 
             let { data } = await axios.request(options);
+            console.log(data);
 
             setCartAnimation("animate-cart");
 

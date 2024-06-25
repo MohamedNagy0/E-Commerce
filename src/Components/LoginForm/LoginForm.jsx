@@ -26,7 +26,7 @@ export default function LoginForm() {
             toastId = toast.loading("Waiting...");
 
             const { data } = await axios.request(options);
-
+            console.log(data);
             if (data.message == "success") {
                 localStorage.setItem("token", data.token);
                 setToken(localStorage.getItem("token"));
@@ -51,12 +51,25 @@ export default function LoginForm() {
                     }
                 );
 
-                navigate("/");
+                if (
+                    window.history.previous.href == window.location.href ||
+                    window.history.previous.href ==
+                        "http://localhost:5173/auth/register"
+                ) {
+                    navigate("/");
+                } else {
+                    window.location.href;
+                }
             }
         } catch (error) {
             clearInputs();
+            console.log(error);
             toast.dismiss(toastId);
-            toast.error(error.response.data.message);
+            if (error.response.data.statusMsg == "fail") {
+                toast.error("Incorrect email or password");
+            } else if (error.response.data.message == "fail") {
+                toast.error("Email and password are required");
+            }
         }
     }
 

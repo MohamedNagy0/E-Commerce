@@ -3,14 +3,18 @@ import styles from "./Navbar.module.css";
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "../../Context/User.context";
 import { CartContext } from "../../Context/Cart.context";
+import { WishListContext } from "../../Context/WishList.context";
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const { token, logOut } = useContext(userContext);
     const { getAllProductsCart, cartProducts, cartAnimation } =
         useContext(CartContext);
+    const { getProductsToWishList, wishListProducts } =
+        useContext(WishListContext);
     useEffect(() => {
         if (token) {
             getAllProductsCart();
+            getProductsToWishList();
         }
     }, []);
 
@@ -35,27 +39,49 @@ export default function Navbar() {
                         </h1>
 
                         {token ? (
-                            <Link
-                                to="/cart"
-                                className={`ml-auto ${cartAnimation} hover:text-slate-700  duration-300 relative md:order-3 cursor-pointer`}
-                            >
-                                <i className="fa-solid fa-cart-shopping fa-lg"></i>
-                                {cartProducts ? (
-                                    <span className="bg-primary font-extrabold  text-sm p-3 size-1 rounded-full text-white flex justify-center items-center absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2">
-                                        {cartProducts == null
-                                            ? 0
-                                            : cartProducts.numOfCartItems || 0}
-                                    </span>
-                                ) : (
-                                    ""
-                                )}
-                            </Link>
+                            <div className="ml-auto md-850:order-3 flex justify-center gap-3 items-center">
+                                <Link
+                                    to="/wishList"
+                                    className={`cursor-pointer`}
+                                >
+                                    {wishListProducts ? (
+                                        <i
+                                            className={`${
+                                                wishListProducts.count == 0 ||
+                                                wishListProducts == null
+                                                    ? "fa-regular"
+                                                    : "fa-solid"
+                                            } fa-heart text-xl hover:animate-shake hover:text-primary duration-300`}
+                                        ></i>
+                                    ) : (
+                                        <i className="fa-regular fa-heart text-xl hover:animate-shake hover:text-primary duration-300"></i>
+                                    )}
+                                </Link>
+                                <Link
+                                    to="/cart"
+                                    className={`${cartAnimation} hover:text-slate-700 duration-300 relative cursor-pointer`}
+                                >
+                                    <i className="fa-solid fa-cart-shopping fa-lg"></i>
+                                    {cartProducts ? (
+                                        <span className="bg-primary font-extrabold  text-sm p-[10px] size-1 rounded-full text-white flex justify-center items-center absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2">
+                                            {cartProducts == null
+                                                ? 0
+                                                : cartProducts.numOfCartItems ||
+                                                  0}
+                                        </span>
+                                    ) : (
+                                        ""
+                                    )}
+                                </Link>
+                            </div>
                         ) : (
                             ""
                         )}
 
                         <span
-                            className={`md:hidden ${!token ? "ml-auto" : ""} `}
+                            className={`md-850:hidden ${
+                                !token ? "ml-auto" : ""
+                            } `}
                             onClick={() => {
                                 setOpen(!open);
                             }}
@@ -66,7 +92,7 @@ export default function Navbar() {
                         <ul
                             className={`${
                                 open ? "flex" : "hidden"
-                            }  max-md:w-full max-md:flex-col md:flex gap-4 nav-links items-center mr-auto text-gray-500`}
+                            }  max-md-850:w-full max-md-850:flex-col md-850:flex gap-4 nav-links items-center mr-auto text-gray-500`}
                         >
                             <li>
                                 <NavLink to="/">Home</NavLink>
@@ -93,7 +119,7 @@ export default function Navbar() {
                         <ul
                             className={` ${
                                 open ? "flex" : "hidden"
-                            } max-md:w-full order-4  md:flex justify-center gap-3 items-center`}
+                            } max-md-850:w-full order-4  md-850:flex justify-center gap-3 items-center`}
                         >
                             <li>
                                 <a
@@ -132,7 +158,7 @@ export default function Navbar() {
                         <ul
                             className={` ${
                                 open ? "flex" : "hidden"
-                            }  gap-4 max-md:w-full order-5 md:flex justify-center items-center  text-gray-500`}
+                            }  gap-4 max-md-850:w-full order-5 md-850:flex justify-center items-center  text-gray-500`}
                         >
                             {!token ? (
                                 <>

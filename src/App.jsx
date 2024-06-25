@@ -22,10 +22,11 @@ import ProtectedAllOrders from "./Components/Protect/ProtectedAllOrders/Protecte
 import { useState } from "react";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import BrandsDetails from "./Pages/BrandsDetails/BrandsDetails";
+import WishList from "./Pages/WishList/WishList";
+import ProtectWishList from "./Components/Protect/ProtectWishList/ProtectWishList";
+import WishListProvider from "./Context/WishList.context";
 
 function App() {
-    const [theme, setTheme] = useState("light");
-
     const routes = createBrowserRouter([
         {
             path: "/",
@@ -62,6 +63,14 @@ function App() {
                         <ProtectedAllOrders>
                             <AllOrders />
                         </ProtectedAllOrders>
+                    ),
+                },
+                {
+                    path: "/wishList",
+                    element: (
+                        <ProtectWishList>
+                            <WishList />
+                        </ProtectWishList>
                     ),
                 },
                 {
@@ -106,8 +115,10 @@ function App() {
         <>
             <UserProvider>
                 <CartProvider>
-                    <RouterProvider router={routes}></RouterProvider>
-                    <Toaster />
+                    <WishListProvider>
+                        <RouterProvider router={routes}></RouterProvider>
+                        <Toaster />
+                    </WishListProvider>
                 </CartProvider>
             </UserProvider>
         </>
