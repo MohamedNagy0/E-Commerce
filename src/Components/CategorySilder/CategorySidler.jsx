@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import styles from "./Category.module.css";
-import { CartContext } from "../../Context/Cart.context";
+import { ProductContext } from "../../Context/Product.context";
 
 //https://ecommerce.routemisr.com/api/v1/categories
 
 export default function CategorySilder() {
-    const { getCategories, AllCategories } = useContext(CartContext);
+    const { getCategories, AllCategories } = useContext(ProductContext);
 
     useEffect(() => {
         getCategories();

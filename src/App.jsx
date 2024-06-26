@@ -25,6 +25,7 @@ import BrandsDetails from "./Pages/BrandsDetails/BrandsDetails";
 import WishList from "./Pages/WishList/WishList";
 import ProtectWishList from "./Components/Protect/ProtectWishList/ProtectWishList";
 import WishListProvider from "./Context/WishList.context";
+import ProductProvider from "./Context/Product.context";
 
 function App() {
     const routes = createBrowserRouter([
@@ -114,12 +115,14 @@ function App() {
     return (
         <>
             <UserProvider>
-                <CartProvider>
-                    <WishListProvider>
-                        <RouterProvider router={routes}></RouterProvider>
-                        <Toaster />
-                    </WishListProvider>
-                </CartProvider>
+                <ProductProvider>
+                    <CartProvider>
+                        <WishListProvider>
+                            <RouterProvider router={routes}></RouterProvider>
+                            <Toaster />
+                        </WishListProvider>
+                    </CartProvider>
+                </ProductProvider>
             </UserProvider>
         </>
     );

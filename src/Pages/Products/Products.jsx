@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { CartContext } from "../../Context/Cart.context";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import Loading from "../Loading/Loading";
 import formatMoney from "../../Helpers/helpers";
 import BackButton from "../../Components/BackButton/BackButton";
 import filterImg from "../../assets/images/filter.png";
+import { ProductContext } from "../../Context/Product.context";
 
 export default function Products() {
     const [showFilterModal, setShowFilterModal] = useState(false);
@@ -34,7 +34,7 @@ export default function Products() {
         setDefactoBrand,
         pumaBrand,
         setPumaBrand,
-    } = useContext(CartContext);
+    } = useContext(ProductContext);
 
     const filterData = allProductsList?.data.filter((item) =>
         item.title.toLowerCase().includes(searchInputValue.toLowerCase())

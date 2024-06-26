@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import { CartContext } from "../../Context/Cart.context";
 import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../../Context/Product.context";
 
 export default function Categories() {
-    const { getCategories, AllCategories } = useContext(CartContext);
+    const { getCategories, AllCategories } = useContext(ProductContext);
 
     useEffect(() => {
         getCategories();

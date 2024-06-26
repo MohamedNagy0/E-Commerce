@@ -4,10 +4,10 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 import HomeSilder from "../../Components/HomeSilder/HomeSilder";
 import CategorySilder from "../../Components/CategorySilder/CategorySidler";
 import Title from "../../Components/Title/Title";
-import { CartContext } from "../../Context/Cart.context";
+import { ProductContext } from "../../Context/Product.context";
 
 export default function Home() {
-    const { getAllHomeProducts, allHomeProducts } = useContext(CartContext);
+    const { getAllHomeProducts, allHomeProducts } = useContext(ProductContext);
 
     useEffect(() => {
         getAllHomeProducts();
