@@ -49,7 +49,8 @@ textarea:focus {
 }
 
 input[type="range"]:focus,
-input[type="radio"]:focus {
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
     box-shadow: none;
 }
 

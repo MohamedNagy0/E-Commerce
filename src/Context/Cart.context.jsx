@@ -17,10 +17,15 @@ export default function CartProvider({ children }) {
     const [AllCategories, setAllCategories] = useState(null);
     const [range, setRange] = useState(50000);
     const [pageNum, setPageNum] = useState(1);
-
+    const [womanCategory, setWomanCategory] = useState("");
+    const [manCategory, setManCategory] = useState("");
+    const [electronicsCategory, setElectronicsCategory] = useState("");
+    const [canonBrand, setCanonBrand] = useState("");
+    const [dellBrand, setDellBrand] = useState("");
+    const [defactoBrand, setDefactoBrand] = useState("");
+    const [pumaBrand, setPumaBrand] = useState("");
     const [priceSort, setPriceSort] = useState("+");
-
-    const allProductsUrl = `https://ecommerce.routemisr.com/api/v1/products?page=${pageNum}&limit=10&sort=${priceSort}price&price[lte]=${range}`;
+    const allProductsUrl = `https://ecommerce.routemisr.com/api/v1/products?page=${pageNum}&limit=10&sort=${priceSort}price&price[lte]=${range}${canonBrand}${dellBrand}${defactoBrand}${pumaBrand}${manCategory}${womanCategory}${electronicsCategory}`;
 
     async function getAllProducts() {
         const options = {
@@ -29,7 +34,6 @@ export default function CartProvider({ children }) {
         };
 
         let { data } = await axios.request(options);
-        console.log(data);
         setAllProductsList(data);
     }
 
@@ -280,22 +284,37 @@ export default function CartProvider({ children }) {
                     updateProductCount,
                     clearAllCartProducts,
                     cartAnimation,
-                    getUserOrders,
                     userOrders,
+                    getUserOrders,
                     isOpen,
                     setIsOpen,
                     getAllProducts,
                     allProductsList,
-                    getAllHomeProducts,
                     allHomeProducts,
+                    getAllHomeProducts,
                     getCategories,
                     AllCategories,
                     range,
                     setRange,
                     allProductsUrl,
+                    priceSort,
                     setPriceSort,
                     pageNum,
                     setPageNum,
+                    womanCategory,
+                    setWomanCategory,
+                    manCategory,
+                    setManCategory,
+                    electronicsCategory,
+                    setElectronicsCategory,
+                    canonBrand,
+                    setCanonBrand,
+                    dellBrand,
+                    setDellBrand,
+                    defactoBrand,
+                    setDefactoBrand,
+                    pumaBrand,
+                    setPumaBrand,
                 }}
             >
                 {children}
