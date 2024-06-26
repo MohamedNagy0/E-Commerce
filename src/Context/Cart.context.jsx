@@ -2,12 +2,14 @@ import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import { userContext } from "./User.context";
 import toast from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
 
 export const CartContext = createContext("");
 
 export default function CartProvider({ children }) {
     const { token } = useContext(userContext);
     const [cartProducts, setCartProducts] = useState(null);
+    const [userOrders, setUserOrders] = useState(null);
     const [cartAnimation, setCartAnimation] = useState(false);
 
     async function addProductToCart({ productId }) {
@@ -65,6 +67,22 @@ export default function CartProvider({ children }) {
                 }
             );
         }
+    }
+
+    async function getUserOrders() {
+        let jwtObject = {};
+        if (token) {
+            jwtObject = jwtDecode(token);
+        }
+        try {
+            const options = {
+                url: `https://ecommerce.routemisr.com/api/v1/orders/user/${jwtObject.id}`,
+                method: "GET",
+            };
+            const { data } = await axios.request(options);
+
+            setUserOrders(data);
+        } catch (error) {}
     }
 
     async function getAllProductsCart() {
@@ -222,6 +240,8 @@ export default function CartProvider({ children }) {
                     updateProductCount,
                     clearAllCartProducts,
                     cartAnimation,
+                    userOrders,
+                    getUserOrders,
                 }}
             >
                 {children}

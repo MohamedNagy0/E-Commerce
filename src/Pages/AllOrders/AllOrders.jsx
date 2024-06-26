@@ -1,31 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../Context/Cart.context";
 import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
 import formatMoney from "../../Helpers/helpers";
-import { jwtDecode } from "jwt-decode";
-import { userContext } from "../../Context/User.context";
-import axios from "axios";
 
 export default function AllOrders() {
-    const [userOrders, setUserOrders] = useState(null);
-    const { token } = useContext(userContext);
-
-    async function getUserOrders() {
-        let jwtObject = {};
-        if (token) {
-            jwtObject = jwtDecode(token);
-        }
-        try {
-            const options = {
-                url: `https://ecommerce.routemisr.com/api/v1/orders/user/${jwtObject.id}`,
-                method: "GET",
-            };
-            const { data } = await axios.request(options);
-
-            setUserOrders(data);
-        } catch (error) {}
-    }
+    const { getUserOrders, userOrders } = useContext(CartContext);
 
     useEffect(() => {
         getUserOrders();
