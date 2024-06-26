@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 
 export default function Brands() {
     const [data, setData] = useState(null);
-    const [pageNum, setPageNum] = useState(1);
-    const [currentPageStyle, setCurrentPageStyle] = useState(true);
+    const [productLimitation, setProductLimitation] = useState(30);
 
     async function getAllBrands() {
         try {
             const options = {
                 method: "GET",
-                url: `https://ecommerce.routemisr.com/api/v1/brands?page=${pageNum}`,
+                url: `https://ecommerce.routemisr.com/api/v1/brands?limit=${productLimitation}`,
             };
 
             let { data } = await axios.request(options);
@@ -25,7 +24,7 @@ export default function Brands() {
 
     useEffect(() => {
         getAllBrands();
-    }, [pageNum]);
+    }, [productLimitation]);
     return (
         <>
             {data ? (
@@ -48,52 +47,42 @@ export default function Brands() {
                             </Link>
                         ))}
                     </section>
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex justify-center items-center gap-4 pb-[320px] max-md:pb-[380px]">
-                        <i
-                            onClick={() => {
-                                setPageNum(1);
-                                setCurrentPageStyle(true);
-                            }}
-                            className="fa-solid ont-bold cursor-pointer text-primary fa-angle-left"
-                        ></i>
-                        <div className="flex items-center gap-1">
-                            <span
-                                onClick={() => {
-                                    setCurrentPageStyle(true);
-                                    setPageNum(1);
-                                }}
-                                className={`size-3 cursor-pointer border text-white ${
-                                    currentPageStyle
-                                        ? "bg-primary"
-                                        : "bg-slate-300"
-                                } rounded-md p-3 flex justify-center items-center`}
-                            >
-                                1
-                            </span>
 
-                            <span
+                    {productLimitation == 30 ? (
+                        <div className="text-center">
+                            <button
+                                type="button"
                                 onClick={() => {
-                                    setCurrentPageStyle(false);
-                                    setPageNum(2);
+                                    setProductLimitation(
+                                        productLimitation + 20
+                                    );
                                 }}
-                                className={`size-3 cursor-pointer border ${
-                                    !currentPageStyle
-                                        ? "bg-primary"
-                                        : "bg-slate-300"
-                                } text-white rounded-md p-3 flex justify-center items-center`}
+                                className="btn-primary text-sm"
                             >
-                                2
-                            </span>
+                                Show More
+                            </button>
                         </div>
+                    ) : (
+                        ""
+                    )}
 
-                        <i
-                            onClick={() => {
-                                setPageNum(2);
-                                setCurrentPageStyle(false);
-                            }}
-                            className="fa-solid ont-bold cursor-pointer text-primary fa-angle-right"
-                        ></i>
-                    </div>
+                    {productLimitation == 50 ? (
+                        <div className="text-center">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setProductLimitation(
+                                        productLimitation - 20
+                                    );
+                                }}
+                                className="btn-primary text-sm"
+                            >
+                                Show less
+                            </button>
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </>
             ) : (
                 <Loading />

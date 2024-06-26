@@ -14,11 +14,13 @@ export default function CartProvider({ children }) {
     const [isOpen, setIsOpen] = useState(false);
     const [allProductsList, setAllProductsList] = useState(null);
     const [allHomeProducts, setAllHomeProducts] = useState(null);
-    const [productLimitation, setProductLimitation] = useState(10);
     const [AllCategories, setAllCategories] = useState(null);
     const [range, setRange] = useState(50000);
+    const [pageNum, setPageNum] = useState(1);
+
     const [priceSort, setPriceSort] = useState("+");
-    const allProductsUrl = `https://ecommerce.routemisr.com/api/v1/products?limit=${productLimitation}&sort=${priceSort}price&price[lte]=${range}`;
+
+    const allProductsUrl = `https://ecommerce.routemisr.com/api/v1/products?page=${pageNum}&limit=10&sort=${priceSort}price&price[lte]=${range}`;
 
     async function getAllProducts() {
         const options = {
@@ -27,7 +29,8 @@ export default function CartProvider({ children }) {
         };
 
         let { data } = await axios.request(options);
-        setAllProductsList(data.data);
+        console.log(data);
+        setAllProductsList(data);
     }
 
     async function getAllHomeProducts() {
@@ -283,8 +286,6 @@ export default function CartProvider({ children }) {
                     setIsOpen,
                     getAllProducts,
                     allProductsList,
-                    setProductLimitation,
-                    productLimitation,
                     getAllHomeProducts,
                     allHomeProducts,
                     getCategories,
@@ -293,6 +294,8 @@ export default function CartProvider({ children }) {
                     setRange,
                     allProductsUrl,
                     setPriceSort,
+                    pageNum,
+                    setPageNum,
                 }}
             >
                 {children}

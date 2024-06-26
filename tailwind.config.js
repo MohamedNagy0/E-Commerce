@@ -4,10 +4,11 @@ export default {
     theme: {
         container: {
             center: true,
+
             screens: {
                 sm: "640px",
 
-                md: "720",
+                md: "720px",
 
                 lg: "960px",
 
