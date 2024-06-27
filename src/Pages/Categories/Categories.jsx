@@ -25,12 +25,12 @@ export default function Categories() {
                             >
                                 <Link
                                     to={`/category/${category._id}`}
-                                    className="relative inline-block mb-6 size-[150px] rounded-xl shadow-md cursor-pointer  p-1"
+                                    className="relative group inline-block mb-6 size-[150px] rounded-xl shadow-md cursor-pointer  p-1"
                                 >
                                     <img
                                         src={category.image}
                                         alt={category.name}
-                                        className="size-full object-cover rounded-xl "
+                                        className="size-full object-cover rounded-xl group-hover:scale-[1.03] duration-500"
                                     />
                                     <h2 className="mt-3 font-semibold text-center">
                                         {category.name}

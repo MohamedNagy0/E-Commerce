@@ -6,12 +6,15 @@ import BackButton from "../../Components/BackButton/BackButton";
 import formatMoney from "../../Helpers/helpers";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 export default function WishList() {
     const [placeHolderImage, setPlaceHolderImage] = useState("block");
     const [imgShow, setImgShow] = useState("hidden");
 
     const {
+        deleteAllWishList,
         getProductsToWishList,
         wishListProducts,
         deleteProductFromWishList,
@@ -48,10 +51,15 @@ export default function WishList() {
                                 </Link>
                             </footer>
                         ) : (
-                            wishListProducts.data.map((product) => (
+                            wishListProducts.data.map((product, index) => (
                                 <article
                                     key={product._id}
-                                    className="wrapper grid grid-cols-12 gap-6 mt-4 border-b-2 pb-8 mx-3"
+                                    className={`wrapper grid grid-cols-12 gap-6 mt-4 ${
+                                        index !=
+                                        wishListProducts.data.length - 1
+                                            ? "border-b-2"
+                                            : ""
+                                    } pb-8 mx-3`}
                                 >
                                     <div className="col-span-4 md:col-span-3 lg:col-span-2">
                                         <div className="inner rounded-3xl overflow-hidden  border-2 ">
@@ -132,9 +140,6 @@ export default function WishList() {
                                                                 productId:
                                                                     product.id,
                                                             });
-                                                            localStorage.removeItem(
-                                                                `${product.id}`
-                                                            );
                                                         } else {
                                                             setIsOpen(true);
                                                             document
@@ -156,11 +161,23 @@ export default function WishList() {
                                             </div>
                                             <button
                                                 onClick={() => {
-                                                    deleteProductFromWishList(
-                                                        product.id
-                                                    );
-                                                    localStorage.removeItem(
-                                                        `${product.id}`
+                                                    withReactContent(Swal).fire(
+                                                        {
+                                                            title: "Are you sure?",
+                                                            text: "Do you want to remove this product from your wishlist ?",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor:
+                                                                "#09c",
+                                                            confirmButtonText:
+                                                                "Yes, clear it!",
+                                                            iconColor: "#09c",
+                                                            preConfirm: () => {
+                                                                deleteProductFromWishList(
+                                                                    product.id
+                                                                );
+                                                            },
+                                                        }
                                                     );
                                                 }}
                                                 className="btn-primary px-4  flex items-center gap-1 rounded-3xl group text-sm cursor-pointer  py-2 bg-red-600 hover:bg-red-500 duration-300"
@@ -172,6 +189,31 @@ export default function WishList() {
                                     </div>
                                 </article>
                             ))
+                        )}
+
+                        {wishListProducts.data.length != 0 ? (
+                            <button
+                                onClick={() => {
+                                    withReactContent(Swal).fire({
+                                        title: "Are you sure?",
+                                        text: "Do you want to remove your products wishlist ?",
+                                        icon: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#09c",
+                                        confirmButtonText: "Yes, clear it!",
+                                        iconColor: "#09c",
+                                        preConfirm: () => {
+                                            deleteAllWishList();
+                                        },
+                                    });
+                                }}
+                                className="btn-primary mx-auto px-4  mt-3 flex items-center gap-1 rounded-3xl group text-sm cursor-pointer  py-2 bg-red-600 hover:bg-red-500 duration-300"
+                            >
+                                <i className="fa-solid fa-trash-can  group-hover:animate-shake"></i>
+                                <span>Remove All</span>
+                            </button>
+                        ) : (
+                            ""
                         )}
                     </section>
                 </>

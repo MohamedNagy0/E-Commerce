@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from "react";
 import { userContext } from "./User.context";
 import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export const CartContext = createContext("");
 
@@ -41,18 +42,29 @@ export default function CartProvider({ children }) {
 
             toast.dismiss(toastId);
             setCartProducts(data);
-            toast(<span className="text-sm">{data.message}</span>, {
-                duration: 2000,
-                position: "top-right",
-                style: {
-                    marginTop: "48px",
-                },
-                icon: (
-                    <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                        <i className="fa-solid fa-check text-white"></i>
-                    </span>
-                ),
-            });
+            toast(
+                <div className="">
+                    <span className="text-sm block">{data.message}</span>{" "}
+                    <a
+                        className="border-b border-primary text-sm text-primary"
+                        href="/cart"
+                    >
+                        View Cart
+                    </a>
+                </div>,
+                {
+                    duration: 2000,
+                    position: "top-right",
+                    style: {
+                        marginTop: "48px",
+                    },
+                    icon: (
+                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                            <i className="fa-solid fa-check text-white"></i>
+                        </span>
+                    ),
+                }
+            );
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(

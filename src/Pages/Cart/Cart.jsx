@@ -81,10 +81,17 @@ export default function Cart() {
                                 <div className="mt-4 md:px-4">
                                     <div>
                                         {cartProducts.data.products.map(
-                                            (product) => (
+                                            (product, index) => (
                                                 <article
                                                     key={product._id}
-                                                    className="wrapper grid grid-cols-12 gap-6 mt-4 border-b-2 pb-8"
+                                                    className={`wrapper grid grid-cols-12 gap-6 mt-4 ${
+                                                        index !=
+                                                        cartProducts.data
+                                                            .products.length -
+                                                            1
+                                                            ? "border-b-2"
+                                                            : ""
+                                                    } pb-8`}
                                                 >
                                                     <div className="col-span-4 md:col-span-3 lg:col-span-2">
                                                         <div className="inner rounded-3xl overflow-hidden  border-2 ">
@@ -331,7 +338,7 @@ export default function Cart() {
                                             },
                                         });
                                     }}
-                                    className="btn-primary capitalize group text-sm px-3 py-1 bg-red-600 hover:bg-red-500 duration-300 mt-5"
+                                    className="btn-primary capitalize group text-sm px-3 py-1 bg-red-600 hover:bg-red-500 duration-300 mt-3"
                                 >
                                     <i className="fa-solid fa-trash-can mr-2 group-hover:animate-shake"></i>
                                     <span>Clear all products</span>

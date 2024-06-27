@@ -36,18 +36,31 @@ export default function WishListProvider({ children }) {
                 getProductsToWishList();
                 setTimeout(() => {
                     toast.dismiss(toastId);
-                    toast(<span className="text-sm">{data.message}</span>, {
-                        duration: 2000,
-                        position: "top-right",
-                        style: {
-                            marginTop: "50px",
-                        },
-                        icon: (
-                            <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                                <i className="fa-solid fa-check text-white"></i>
+                    toast(
+                        <div className="">
+                            <span className="text-sm block">
+                                {data.message}
                             </span>
-                        ),
-                    });
+                            <a
+                                className="border-b border-primary text-sm text-primary"
+                                href="/wishlist"
+                            >
+                                View Wishlist
+                            </a>
+                        </div>,
+                        {
+                            duration: 2000,
+                            position: "top-right",
+                            style: {
+                                marginTop: "50px",
+                            },
+                            icon: (
+                                <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                                    <i className="fa-solid fa-check text-white"></i>
+                                </span>
+                            ),
+                        }
+                    );
                 }, 250);
             }
         } catch (error) {}
@@ -110,6 +123,12 @@ export default function WishListProvider({ children }) {
         } catch (error) {}
     }
 
+    function deleteAllWishList() {
+        wishListProducts.data.map((product) =>
+            deleteProductFromWishList(product.id)
+        );
+    }
+
     return (
         <>
             <WishListContext.Provider
@@ -118,6 +137,7 @@ export default function WishListProvider({ children }) {
                     getProductsToWishList,
                     wishListProducts,
                     deleteProductFromWishList,
+                    deleteAllWishList,
                 }}
             >
                 {children}
