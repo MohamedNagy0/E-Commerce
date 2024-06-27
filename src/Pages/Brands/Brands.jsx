@@ -33,11 +33,11 @@ export default function Brands() {
                         Shop by Brands
                     </h2>
                     <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 ">
-                        {data.data.map((brand) => (
+                        {data.data.map((brand, index) => (
                             <Link
                                 to={`/brand/${brand._id}`}
                                 key={brand._id}
-                                className="col-span-4 md:col-span-3 lg:md:col-span-2 "
+                                className="col-span-4 md:col-span-3 lg:md:col-span-2  flex items-center justify-center "
                             >
                                 <img
                                     src={brand.image}
