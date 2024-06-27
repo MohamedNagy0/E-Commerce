@@ -175,7 +175,7 @@ export default function Products() {
                                                         womanCategory != ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border   border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white flex justify-center items-center`}
+                                                    } size-1 p-[6px] border   border-primary duration-300  group-hover:text-white text-white flex justify-center items-center`}
                                                 >
                                                     {womanCategory != "" ? (
                                                         <i className="fa-solid fa-check  text-[10px]"></i>
@@ -207,7 +207,7 @@ export default function Products() {
                                                         manCategory != ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white  flex justify-center items-center`}
+                                                    } size-1 p-[6px] border border-primary duration-300  group-hover:text-white text-white  flex justify-center items-center`}
                                                 >
                                                     {manCategory != "" ? (
                                                         <i className="fa-solid fa-check text-[10px]"></i>
@@ -240,7 +240,7 @@ export default function Products() {
                                                         ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white  flex justify-center items-center`}
+                                                    } size-1 p-[6px] border border-primary duration-300  group-hover:text-white text-white  flex justify-center items-center`}
                                                 >
                                                     {electronicsCategory !=
                                                     "" ? (
@@ -281,7 +281,7 @@ export default function Products() {
                                                         canonBrand != ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border   border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white flex justify-center items-center`}
+                                                    } size-1 p-[6px] border   border-primary duration-300  group-hover:text-white text-white flex justify-center items-center`}
                                                 >
                                                     {canonBrand != "" ? (
                                                         <i className="fa-solid fa-check  text-[10px]"></i>
@@ -313,7 +313,7 @@ export default function Products() {
                                                         dellBrand != ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white  flex justify-center items-center`}
+                                                    } size-1 p-[6px] border border-primary duration-300  group-hover:text-white text-white  flex justify-center items-center`}
                                                 >
                                                     {dellBrand != "" ? (
                                                         <i className="fa-solid fa-check text-[10px]"></i>
@@ -345,7 +345,7 @@ export default function Products() {
                                                         defactoBrand != ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white  flex justify-center items-center`}
+                                                    } size-1 p-[6px] border border-primary duration-300  group-hover:text-white text-white  flex justify-center items-center`}
                                                 >
                                                     {defactoBrand != "" ? (
                                                         <i className="fa-solid fa-check text-[10px]"></i>
@@ -376,7 +376,7 @@ export default function Products() {
                                                         pumaBrand != ""
                                                             ? "bg-primary"
                                                             : ""
-                                                    } size-1 p-[6px] border border-primary duration-300 group-hover:bg-primary group-hover:text-white text-white  flex justify-center items-center`}
+                                                    } size-1 p-[6px] border border-primary duration-300  group-hover:text-white text-white  flex justify-center items-center`}
                                                 >
                                                     {pumaBrand != "" ? (
                                                         <i className="fa-solid fa-check text-[10px]"></i>
