@@ -1,34 +1,29 @@
 import onlinePaymentImg from "../../assets/images/online1.png";
 import cashPaymentImg from "../../assets/images/cash1.png";
 import axios from "axios";
-import { Formik, useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import * as Yup from "yup";
 import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import { Navigate, useNavigate } from "react-router-dom";
 import formatMoney from "../../Helpers/helpers";
 
-export default function CheckOut({ totalPrice, userPhone }) {
+export default function CheckOut({ totalPrice }) {
     const navigate = useNavigate();
     const { cartProducts, setCartProducts } = useContext(CartContext);
     const { token } = useContext(userContext);
-    const [payment, setPayMent] = useState(null);
 
-    // function clearInputs() {
-    //     formik.values.shippingAddress.city = "";
-    //     formik.values.shippingAddress.phone = "";
-    //     formik.values.shippingAddress.details = "";
-    // }
+    const [city, setCity] = useState("");
+    const [phone, setPhone] = useState("");
+    const [details, setDetails] = useState("");
 
-    // function changeTouchedValue() {
-    //     formik.touched.shippingAddress.city = false;
-    //     formik.touched.shippingAddress.details = false;
-    //     formik.touched.shippingAddress.phone = false;
-    // }
+    const [cityTouch, setCityTouch] = useState(false);
+    const [phoneTouch, setPhoneTouch] = useState(false);
+    const [detailsTouch, setDetailsTouch] = useState(false);
 
-    async function createCashOrder(values) {
+    const [errors, setErrors] = useState({});
+
+    async function createCashOrder() {
         let toastId;
 
         try {
@@ -36,7 +31,11 @@ export default function CheckOut({ totalPrice, userPhone }) {
                 method: "POST",
                 url: `https://ecommerce.routemisr.com/api/v1/orders/${cartProducts.data._id}`,
                 data: {
-                    values,
+                    shippingAddress: {
+                        details,
+                        phone,
+                        city,
+                    },
                 },
                 headers: { token },
             };
@@ -61,7 +60,7 @@ export default function CheckOut({ totalPrice, userPhone }) {
         } catch (error) {}
     }
 
-    async function createOnlineOrder(values) {
+    async function createOnlineOrder() {
         let toastId;
 
         try {
@@ -69,7 +68,11 @@ export default function CheckOut({ totalPrice, userPhone }) {
                 method: "POST",
                 url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=http://localhost:5173`,
                 data: {
-                    values,
+                    shippingAddress: {
+                        details,
+                        phone,
+                        city,
+                    },
                 },
 
                 headers: { token },
@@ -85,69 +88,35 @@ export default function CheckOut({ totalPrice, userPhone }) {
         } catch (error) {}
     }
 
-    // const formValidation = Yup.object({
-    //     details: Yup.string()
-    //         .required("Details is required")
-    //         .min(3, "Details must more then 3 characters")
-    //         .max(50, "Details must less then 50 characters"),
-    //     phone: Yup.string()
-    //         .required("Phone is required")
-    //         .matches(/^01[0125][0-9]{8}$/, "Phone is invalid"),
-    //     city: Yup.string()
-    //         .required("City name is required")
-    //         .min(3, "City name must more then 3 characters")
-    //         .max(10, "City name must less then 11 characters"),
-    // });
+    function formValidation() {
+        if (city == "") {
+            errors.city = "City is required";
+        } else if (city.length < 3) {
+            errors.city = "City must more then 3 characters";
+        } else if (city.length > 11) {
+            errors.city = "City must less then 11 characters";
+        } else {
+            errors.city = "";
+        }
 
-    // function formValidation(values) {
-    //     const errors = {};
+        if (phone == "") {
+            errors.phone = "phone is required";
+        } else if (!/^01[0125][0-9]{8}$/.test(phone)) {
+            errors.phone = "Phone is invalid";
+        } else {
+            errors.phone = "";
+        }
 
-    //     if (!values.shippingAddress.details) {
-    //         errors.details = "Details is required";
-    //     } else if (values.shippingAddress.details.length < 3) {
-    //         errors.details = "Details must more then 3 characters";
-    //     } else if (values.shippingAddress.details.length > 50) {
-    //         errors.details = "Details must less then 50 characters";
-    //     }
-
-    //     if (!values.shippingAddress.city) {
-    //         errors.city = "City is required";
-    //     } else if (values.shippingAddress.city.length < 3) {
-    //         errors.city = "City must more then 3 characters";
-    //     } else if (values.shippingAddress.city.length > 11) {
-    //         errors.city = "City must less then 11 characters";
-    //     }
-
-    //     if (!values.shippingAddress.phone) {
-    //         errors.phone = "phone is required";
-    //     } else if (!/^01[0125][0-9]{8}$/.test(values.shippingAddress.phone)) {
-    //         errors.phone = "Phone is invalid";
-    //     }
-
-    //     return errors;
-    // }
-
-    const formik = useFormik({
-        initialValues: {
-            shippingAddress: {
-                details: "",
-                phone: userPhone,
-                city: "",
-            },
-        },
-
-        // validationSchema: formValidation,
-
-        // validate: formValidation,
-
-        onSubmit: (values) => {
-            if (payment == "online") {
-                createOnlineOrder(values);
-            } else {
-                createCashOrder(values);
-            }
-        },
-    });
+        if (details == "") {
+            errors.details = "Details is required";
+        } else if (details.length < 3) {
+            errors.details = "Details must more then 3 characters";
+        } else if (details.length > 50) {
+            errors.details = "Details must less then 50 characters";
+        } else {
+            errors.details = "";
+        }
+    }
 
     return (
         <>
@@ -161,7 +130,6 @@ export default function CheckOut({ totalPrice, userPhone }) {
                 <form
                     id="checkOut"
                     className="w-full p-8 border border-gray-300 rounded-lg duration-700 target:border-darkPrimary   flex flex-col gap-6 mt-12"
-                    onSubmit={formik.handleSubmit}
                 >
                     <h3 className="font-bold text-lg -ml-2">Cart totals</h3>
 
@@ -178,18 +146,22 @@ export default function CheckOut({ totalPrice, userPhone }) {
                             type="text"
                             placeholder="Enter Your City Name"
                             name="shippingAddress.city"
-                            value={formik.values.shippingAddress.city}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
+                            value={city}
+                            onChange={(e) => {
+                                setCity(e.target.value);
+                            }}
+                            onInput={() => {
+                                formValidation();
+                                setCityTouch(true);
+                            }}
                         />
                     </div>
 
-                    {/* {formik.errors.city &&
-                        formik.touched.shippingAddress.city && (
-                            <p className="text-red-600 font-bold text-sm -my-3">
-                                *{formik.errors.city}
-                            </p>
-                        )} */}
+                    {errors.city && cityTouch && (
+                        <p className="text-red-600 font-bold text-sm -my-3">
+                            *{errors.city}
+                        </p>
+                    )}
 
                     <div>
                         <input
@@ -198,40 +170,58 @@ export default function CheckOut({ totalPrice, userPhone }) {
                             type="tel"
                             placeholder="Enter Your Phone"
                             name="shippingAddress.phone"
-                            value={formik.values.shippingAddress.phone}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
+                            value={phone}
+                            onChange={(e) => {
+                                setPhone(e.target.value);
+                            }}
+                            onInput={() => {
+                                formValidation();
+                                setPhoneTouch(true);
+                            }}
                         />
                     </div>
-                    {/* {formik.errors.phone &&
-                        formik.touched.shippingAddress.phone && (
-                            <p className="text-red-600 font-bold text-sm -my-3 ">
-                                *{formik.errors.phone}
-                            </p>
-                        )} */}
+                    {errors.phone && phoneTouch && (
+                        <p className="text-red-600 font-bold text-sm -my-3 ">
+                            *{errors.phone}
+                        </p>
+                    )}
                     <div>
                         <textarea
                             className="w-full min-h-20 form-control placeholder:text-sm"
                             placeholder="Details"
                             name="shippingAddress.details"
-                            value={formik.values.shippingAddress.details}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
+                            value={details}
+                            onChange={(e) => {
+                                setDetails(e.target.value);
+                            }}
+                            onInput={() => {
+                                formValidation();
+                                setDetailsTouch(true);
+                            }}
                         />
                     </div>
-                    {/* {formik.errors.details &&
-                        formik.touched.shippingAddress.details && (
-                            <p className="text-red-600 font-bold text-sm -my-3 ">
-                                *{formik.errors.details}
-                            </p>
-                        )} */}
+                    {errors.details && detailsTouch && (
+                        <p className="text-red-600 font-bold text-sm -my-3 ">
+                            *{errors.details}
+                        </p>
+                    )}
 
                     <div className=" flex  gap-4 justify-between items-center">
                         <button
                             onClick={() => {
-                                setPayMent("cash");
+                                setDetailsTouch(true);
+                                setPhoneTouch(true);
+                                setCityTouch(true);
+                                formValidation();
+                                if (
+                                    errors.details == "" &&
+                                    errors.city == "" &&
+                                    errors.phone == ""
+                                ) {
+                                    createCashOrder();
+                                }
                             }}
-                            type="submit"
+                            type="button"
                             className="btn-primary w-full flex py-1 text-nowrap items-center justify-center gap-2"
                         >
                             <img
@@ -243,9 +233,19 @@ export default function CheckOut({ totalPrice, userPhone }) {
                         </button>
                         <button
                             onClick={() => {
-                                setPayMent("online");
+                                setDetailsTouch(true);
+                                setPhoneTouch(true);
+                                setCityTouch(true);
+                                formValidation();
+                                if (
+                                    errors.details == "" &&
+                                    errors.city == "" &&
+                                    errors.phone == ""
+                                ) {
+                                    createOnlineOrder();
+                                }
                             }}
-                            type="submit"
+                            type="button"
                             className="btn-primary flex py-1 text-nowrap items-center justify-center gap-2 hover:text-white hover:bg-primary bg-white text-darkPrimary w-full"
                         >
                             <img
