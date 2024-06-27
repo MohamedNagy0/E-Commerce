@@ -29,7 +29,7 @@ export default function BrandsDetails() {
         <>
             {specificBrandProducts ? (
                 <>
-                    <div className="mb-4 flex justify-end ">
+                    <div className="mb-4 flex justify-start ">
                         <BackButton />
                     </div>
                     {specificBrandProducts.length == 0 ? (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 export const ProductContext = createContext("");
 
@@ -48,6 +48,7 @@ export default function ProductProvider({ children }) {
         let { data } = await axios.request(options);
         setAllCategories(data.data);
     }
+
     return (
         <>
             <ProductContext.Provider

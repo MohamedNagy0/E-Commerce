@@ -18,14 +18,14 @@ export default function Categories() {
                         Shop by category
                     </h2>
                     <section className="wrapper grid grid-cols-12 px-2">
-                        {AllCategories.map((category) => (
+                        {AllCategories.map((category, index) => (
                             <div
                                 key={category._id}
                                 className="flex flex-col  justify-center items-center p-4 col-span-4 md:col-span-3 lg:md:col-span-2 "
                             >
                                 <Link
                                     to={`/category/${category._id}`}
-                                    className="inline-block mb-6 size-[150px] rounded-xl shadow-md cursor-pointer  p-1"
+                                    className="relative inline-block mb-6 size-[150px] rounded-xl shadow-md cursor-pointer  p-1"
                                 >
                                     <img
                                         src={category.image}
@@ -35,6 +35,14 @@ export default function Categories() {
                                     <h2 className="mt-3 font-semibold text-center">
                                         {category.name}
                                     </h2>
+
+                                    {index != 1 && index != 2 && index != 9 ? (
+                                        <p className="bg-red-600 bg-opacity-50 text-sm w-[95%] text-white uppercase  text-center absolute top-1/2  -translate-y-1/2">
+                                            Out OFF STOCK
+                                        </p>
+                                    ) : (
+                                        ""
+                                    )}
                                 </Link>
                             </div>
                         ))}
