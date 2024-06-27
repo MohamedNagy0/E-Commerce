@@ -52,7 +52,7 @@ export default function UserProvider({ children }) {
         localStorage.removeItem("token");
         setTimeout(() => {
             toast.dismiss(toastId);
-            window.location.href = "http://localhost:5174/";
+            window.location.href = "http://localhost:5173/";
             setToken(null);
             toast(<span className="text-darkPrimary ">Logged out</span>, {
                 duration: 2000,
