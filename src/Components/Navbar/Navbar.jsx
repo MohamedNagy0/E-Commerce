@@ -20,8 +20,13 @@ export default function Navbar() {
 
     useEffect(() => {
         if (token) {
-            getAllProductsCart();
             getProductsToWishList();
+        }
+    }, [wishListProducts]);
+
+    useEffect(() => {
+        if (token) {
+            getAllProductsCart();
         }
     }, [token]);
 
