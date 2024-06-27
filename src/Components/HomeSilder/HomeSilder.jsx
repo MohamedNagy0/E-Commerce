@@ -36,9 +36,12 @@ export default function HomeSilder() {
                             modules={[Pagination]}
                             className="mySwiper"
                         >
-                            {silderImages.map((obj) => {
+                            {silderImages.map((obj, index) => {
                                 return (
                                     <SwiperSlide
+                                        onClick={() => {
+                                            console.log(index);
+                                        }}
                                         key={obj.id}
                                         style={{ height: "100%" }}
                                     >
@@ -48,31 +51,36 @@ export default function HomeSilder() {
                                             }}
                                             className={`w-full h-[400px] md:h-full bg-center bg-cover cursor-pointer`}
                                         >
-                                            <div className="flex flex-col p-5">
-                                                <h2 className="text-3xl font-extrabold text-primary mb-2 Ubuntu">
-                                                    <span className="bg-white rounded-full text-darkPrimary px-3 py-2">
-                                                        <i className="fa-brands fa-opencart text-primary mr-2"></i>{" "}
-                                                        Fresh Cart
-                                                    </span>
-                                                </h2>
-                                                <p className="text-sm Ubuntu text-white font-semibold max-w-xl mt-4 shadow-inner bg-white bg-opacity-10 p-5 rounded-lg">
-                                                    Whether you’re looking for
-                                                    the freshest produce, pantry
-                                                    staples, or specialty items,
-                                                    FreshCart brings the
-                                                    supermarket to you,
-                                                    redefining the way you shop
-                                                    for groceries.
-                                                </p>
-                                                <div className="mt-8">
-                                                    <a
-                                                        href="#products-section"
-                                                        className="btn-primary capitalize rounded-full Ubuntu"
-                                                    >
-                                                        Get Started
-                                                    </a>
+                                            {index == 0 ? (
+                                                <div className="flex flex-col p-5">
+                                                    <h2 className="text-3xl font-extrabold text-primary mb-2 Ubuntu">
+                                                        <span className="bg-white rounded-full text-darkPrimary px-3 py-2">
+                                                            <i className="fa-brands fa-opencart text-primary mr-2"></i>{" "}
+                                                            Fresh Cart
+                                                        </span>
+                                                    </h2>
+                                                    <p className="text-sm Ubuntu text-white font-semibold max-w-xl mt-4 shadow-inner bg-white bg-opacity-10 p-5 rounded-lg">
+                                                        Whether you’re looking
+                                                        for the freshest
+                                                        produce, pantry staples,
+                                                        or specialty items,
+                                                        FreshCart brings the
+                                                        supermarket to you,
+                                                        redefining the way you
+                                                        shop for groceries.
+                                                    </p>
+                                                    <div className="mt-8">
+                                                        <a
+                                                            href="#products-section"
+                                                            className="btn-primary capitalize rounded-full Ubuntu"
+                                                        >
+                                                            Get Started
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            ) : (
+                                                ""
+                                            )}
                                         </div>
                                     </SwiperSlide>
                                 );
