@@ -32,7 +32,7 @@ export default function Brands() {
                     <h2 className="text-center border-b border-t py-2 text-primary text-lg">
                         Shop by Brand
                     </h2>
-                    <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 ">
+                    <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 mt-4 ">
                         {data.data.map((brand, index) => (
                             <Link
                                 to={`/brand/${brand._id}`}
@@ -42,7 +42,7 @@ export default function Brands() {
                                 <img
                                     src={brand.image}
                                     alt={brand.name}
-                                    className="size-36 rounded-full shadow-md p-2 cursor-pointer object-contain hover:scale-[1.2] hover:-translate-y-8 duration-500"
+                                    className="size-36 bg-white rounded-full shadow-md p-2 cursor-pointer object-contain hover:scale-[1.2] hover:-translate-y-8 duration-500"
                                 />
                             </Link>
                         ))}
