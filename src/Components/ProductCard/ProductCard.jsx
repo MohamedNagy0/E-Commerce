@@ -133,7 +133,7 @@ export default function ProductCard({ products }) {
                             {category.name}
                         </h2>
                         <div className="text-gray-500  text-sm">
-                            <span>{brand.name}</span>
+                            <span>{brand?.name}</span>
                             <span className="mx-1">|</span>
                             <span className="text-green-500">Available</span>
                         </div>

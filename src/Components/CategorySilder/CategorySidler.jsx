@@ -20,6 +20,9 @@ export default function CategorySilder() {
         <>
             {AllCategories ? (
                 <section className={`max-md:px-2 ${styles.categorySlider}`}>
+                    <h2 className="font-semibold text-lg -mt-3 mb-2">
+                        Shope now by popular categories
+                    </h2>
                     <div className="bg-light">
                         <Swiper
                             slidesPerView={2}

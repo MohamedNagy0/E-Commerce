@@ -30,7 +30,7 @@ export default function Brands() {
             {data ? (
                 <>
                     <h2 className="text-center border-b border-t py-2 text-primary text-lg">
-                        Shop by Brands
+                        Shop by Brand
                     </h2>
                     <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 ">
                         {data.data.map((brand, index) => (
