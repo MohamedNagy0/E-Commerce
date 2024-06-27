@@ -6,7 +6,6 @@ export const userContext = createContext(null);
 
 export default function UserProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"));
-    const [welcomeStatus, setWelcomeStatus] = useState(true);
 
     function clearInputs() {
         Formik.values.email = "";
@@ -49,7 +48,7 @@ export default function UserProvider({ children }) {
 
     function logOut() {
         let toastId;
-        toastId = toast.loading("waiting...");
+        toastId = toast.loading("Logging out...");
         localStorage.removeItem("token");
         setTimeout(() => {
             toast.dismiss(toastId);
@@ -74,8 +73,6 @@ export default function UserProvider({ children }) {
                     token,
                     setToken,
                     logOut,
-                    welcomeStatus,
-                    setWelcomeStatus,
                     ForgotPassword,
                 }}
             >

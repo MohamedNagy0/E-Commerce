@@ -1,23 +1,23 @@
 import { useContext } from "react";
-import { CartContext } from "../../Context/Cart.context";
+import { ProductContext } from "../../Context/Product.context";
 
 export default function Modal(props) {
-    const { setIsOpen } = useContext(CartContext);
+    const { setShowLoginModal } = useContext(ProductContext);
 
     document.addEventListener("keydown", (e) => {
         if (e.key == "Escape") {
-            setIsOpen(false);
+            setShowLoginModal(false);
             document.querySelector("body").classList.remove("overflow-hidden");
         }
     });
 
     return (
         <>
-            {props.isOpen && (
+            {props.showModel && (
                 <div
                     onClick={(e) => {
                         if (e.target == document.querySelector(".modal")) {
-                            setIsOpen(false);
+                            setShowLoginModal(false);
                             document
                                 .querySelector("body")
                                 .classList.remove("overflow-hidden");
@@ -33,7 +33,7 @@ export default function Modal(props) {
                             </h2>
                             <i
                                 onClick={() => {
-                                    setIsOpen(false);
+                                    setShowLoginModal(false);
                                     document
                                         .querySelector("body")
                                         .classList.remove("overflow-hidden");

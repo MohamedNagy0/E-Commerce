@@ -6,7 +6,7 @@ export const ProductContext = createContext("");
 export default function ProductProvider({ children }) {
     const [allHomeProducts, setAllHomeProducts] = useState(null);
     const [AllCategories, setAllCategories] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const [allProductsList, setAllProductsList] = useState(null);
     const [range, setRange] = useState(50000);
     const [pageNum, setPageNum] = useState(1);
@@ -56,8 +56,8 @@ export default function ProductProvider({ children }) {
                     getAllHomeProducts,
                     getCategories,
                     AllCategories,
-                    isOpen,
-                    setIsOpen,
+                    showLoginModal,
+                    setShowLoginModal,
                     getAllProducts,
                     allProductsList,
                     range,

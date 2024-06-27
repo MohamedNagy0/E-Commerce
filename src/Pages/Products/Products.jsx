@@ -85,7 +85,7 @@ export default function Products() {
                                                 setPriceSort("+");
                                             }}
                                         >
-                                            <label
+                                            <div
                                                 className="cursor-pointer flex gap-2 items-center"
                                                 htmlFor="priceSmaller"
                                             >
@@ -97,13 +97,7 @@ export default function Products() {
                                                         ""
                                                     )}
                                                 </span>
-                                            </label>
-                                            <input
-                                                className="hidden"
-                                                id="priceSmaller"
-                                                type="radio"
-                                                name="priceSort"
-                                            />
+                                            </div>
                                         </div>
                                         <div
                                             onClick={() => {
@@ -123,12 +117,6 @@ export default function Products() {
                                                     )}
                                                 </span>
                                             </label>
-                                            <input
-                                                className="hidden"
-                                                id="priceBigger"
-                                                type="radio"
-                                                name="priceSort"
-                                            />
                                         </div>
                                     </form>
                                 </div>

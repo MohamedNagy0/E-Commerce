@@ -1,13 +1,13 @@
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/User.context";
-import { CartContext } from "../../Context/Cart.context";
+import { ProductContext } from "../../Context/Product.context";
 export default function LoginForm() {
     const { token, setToken } = useContext(userContext);
-    const { setIsOpen } = useContext(CartContext);
+    const { setShowLoginModal } = useContext(ProductContext);
     let navigate = useNavigate();
 
     function clearInputs() {
@@ -30,7 +30,7 @@ export default function LoginForm() {
                 localStorage.setItem("token", data.token);
                 setToken(localStorage.getItem("token"));
                 toast.dismiss(toastId);
-                setIsOpen(false);
+                setShowLoginModal(false);
                 document
                     .querySelector("body")
                     .classList.remove("overflow-hidden");
@@ -111,7 +111,7 @@ export default function LoginForm() {
                         </button>
                         <Link
                             onClick={() => {
-                                setIsOpen(false);
+                                setShowLoginModal(false);
 
                                 document
                                     .querySelector("body")
@@ -125,7 +125,7 @@ export default function LoginForm() {
                         <div>
                             <Link
                                 onClick={() => {
-                                    setIsOpen(false);
+                                    setShowLoginModal(false);
                                     document
                                         .querySelector("body")
                                         .classList.remove("overflow-hidden");

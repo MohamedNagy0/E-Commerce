@@ -8,11 +8,13 @@ import BackButton from "../../Components/BackButton/BackButton";
 import { userContext } from "../../Context/User.context";
 import formatMoney from "../../Helpers/helpers";
 import { WishListContext } from "../../Context/WishList.context";
+import { ProductContext } from "../../Context/Product.context";
 
 // https://ecommerce.routemisr.com/api/v1/products/6428de2adc1175abc65ca05b
 export default function ProductDetails() {
     const [data, setData] = useState(null);
-    const { addProductToCart, setIsOpen } = useContext(CartContext);
+    const { addProductToCart } = useContext(CartContext);
+    const { setShowLoginModal } = useContext(ProductContext);
     const { token } = useContext(userContext);
     let favorite = false;
     let { productId } = useParams();
@@ -145,7 +147,7 @@ export default function ProductDetails() {
                                                             }
                                                         }
                                                     } else {
-                                                        setIsOpen(true);
+                                                        setShowLoginModal(true);
                                                         document
                                                             .querySelector(
                                                                 "body"
@@ -179,7 +181,7 @@ export default function ProductDetails() {
                                                             productId: data.id,
                                                         });
                                                     } else {
-                                                        setIsOpen(true);
+                                                        setShowLoginModal(true);
                                                         document
                                                             .querySelector(
                                                                 "body"

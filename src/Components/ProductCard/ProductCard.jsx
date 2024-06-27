@@ -4,12 +4,13 @@ import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import formatMoney from "../../Helpers/helpers";
 import { WishListContext } from "../../Context/WishList.context";
+import { ProductContext } from "../../Context/Product.context";
 
 export default function ProductCard({ products }) {
     const [finaleSale, setFinaleSale] = useState(null);
     const { addProductToCart } = useContext(CartContext);
     const { token } = useContext(userContext);
-    const { setIsOpen } = useContext(CartContext);
+    const { setShowLoginModal } = useContext(ProductContext);
     let favorite = false;
     const {
         addProductToWishList,
@@ -83,7 +84,7 @@ export default function ProductCard({ products }) {
                                         }
                                     }
                                 } else {
-                                    setIsOpen(true);
+                                    setShowLoginModal(true);
                                     document
                                         .querySelector("body")
                                         .classList.add("overflow-hidden");
@@ -99,7 +100,7 @@ export default function ProductCard({ products }) {
                                 if (token) {
                                     addProductToCart({ productId: id });
                                 } else {
-                                    setIsOpen(true);
+                                    setShowLoginModal(true);
                                     document
                                         .querySelector("body")
                                         .classList.add("overflow-hidden");
