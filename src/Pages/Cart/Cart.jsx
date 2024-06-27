@@ -11,6 +11,7 @@ import formatMoney from "../../Helpers/helpers";
 export default function Cart() {
     const [placeHolderImage, setPlaceHolderImage] = useState("block");
     const [imgShow, setImgShow] = useState("hidden");
+    const [currentIndex, setCurrentIndex] = useState(null);
 
     const {
         getAllProductsCart,
@@ -202,6 +203,9 @@ export default function Cart() {
                                                             <div className="flex justify-center items-center gap-5 border-2 self-center  px-4 py-1 md:py-2 rounded-2xl ">
                                                                 <button
                                                                     onClick={() => {
+                                                                        setCurrentIndex(
+                                                                            index
+                                                                        );
                                                                         if (
                                                                             product.count <=
                                                                             1
@@ -230,7 +234,12 @@ export default function Cart() {
                                                                     <i className="fa-solid fa-minus text-xs hover:text-primary duration-300"></i>
                                                                 </button>
                                                                 <span
-                                                                    className={`font-bold text-base ${cartAnimation}`}
+                                                                    className={`font-bold text-base  ${
+                                                                        currentIndex ==
+                                                                        index
+                                                                            ? cartAnimation
+                                                                            : ""
+                                                                    }`}
                                                                 >
                                                                     {
                                                                         product.count
@@ -238,14 +247,10 @@ export default function Cart() {
                                                                 </span>
                                                                 <button
                                                                     onClick={() => {
-                                                                        var r =
-                                                                            document.querySelector(
-                                                                                ":root"
-                                                                            );
-                                                                        r.style.setProperty(
-                                                                            "--countColor",
-                                                                            "green"
+                                                                        setCurrentIndex(
+                                                                            index
                                                                         );
+
                                                                         updateProductCount(
                                                                             {
                                                                                 productId:
