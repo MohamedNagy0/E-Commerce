@@ -45,7 +45,7 @@ export default function Brands() {
                         ))}
                     </section>
 
-                    {productLimitation == 30 ? (
+                    {productLimitation == 30 && data.data.length != 0 ? (
                         <div className="text-center">
                             <button
                                 type="button"
@@ -63,7 +63,7 @@ export default function Brands() {
                         ""
                     )}
 
-                    {productLimitation == 50 ? (
+                    {productLimitation == 50 && data.data.length != 0 ? (
                         <div className="text-center">
                             <button
                                 type="button"
