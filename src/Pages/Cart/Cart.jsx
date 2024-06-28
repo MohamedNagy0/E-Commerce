@@ -34,7 +34,7 @@ export default function Cart() {
             ) : (
                 <section className="cart-section bg-light p-5 mx-4  rounded-3xl">
                     <div className="container">
-                        <header className="flex justify-between items-start px-2 my-4 gap-4">
+                        <header className="flex max-sm:flex-col  justify-between items-start px-2 my-4 gap-4">
                             <div className="flex items-center gap-6">
                                 <BackButton />
                                 <h2 className="flex items-center gap-2">
@@ -45,14 +45,15 @@ export default function Cart() {
                                 </h2>
                             </div>
                             {cartProducts.length != 0 ? (
-                                <div className="flex flex-col justify-center items-center gap-3">
-                                    <h3 className="font-semibold flex text-nowrap text-primary">
+                                <div className="flex max-sm:self-center  max-sm:mb-8 max-sm:mt-3  flex-col justify-center items-center gap-3">
+                                    <h3 className="font-semibold flex gap-2 text-nowrap text-primary">
                                         <span className="text-darkPrimary">
-                                            Total Price :{" "}
+                                            Total Price :
                                         </span>
-                                        <span className="text-xs  ml-1">$</span>
                                         <span>
-                                            {cartProducts.data.totalCartPrice}
+                                            {formatMoney(
+                                                cartProducts.data.totalCartPrice
+                                            )}
                                         </span>
                                     </h3>
                                     <a
@@ -199,8 +200,8 @@ export default function Cart() {
                                                             </div>
                                                         </div>
 
-                                                        <div className="flex md:max-lg:mt-2 justify-between items-center w-full">
-                                                            <div className="flex justify-center items-center gap-5 border-2 self-center  px-4 py-1 md:py-2 rounded-2xl ">
+                                                        <div className="flex md:max-lg:mt-2 max-sm:flex-wrap justify-between items-center w-full">
+                                                            <div className="flex max-sm:mt-2 max-sm:w-full justify-center items-center gap-5 border-2 self-center  px-4 py-1 md:py-2 rounded-2xl ">
                                                                 <button
                                                                     onClick={() => {
                                                                         setCurrentIndex(
@@ -269,12 +270,12 @@ export default function Cart() {
                                                                 </button>
                                                             </div>
 
-                                                            <div className="text-primary text-sm flex flex-col justify-center items-center">
+                                                            <div className="text-primary max-sm:order-first  text-sm flex flex-col justify-center items-center">
                                                                 <span className="font-medium text-sm text-darkPrimary">
                                                                     Total Price
                                                                 </span>
-                                                                <span className="text-base flex ">
-                                                                    <span className="text-xs">
+                                                                <span className="text-sm flex gap-1 items-center">
+                                                                    <span>
                                                                         EGP
                                                                     </span>
 
@@ -284,7 +285,7 @@ export default function Cart() {
                                                             </div>
 
                                                             <button
-                                                                className="group order-last"
+                                                                className="group max-sm:order-first order-last"
                                                                 onClick={() => {
                                                                     withReactContent(
                                                                         Swal
@@ -310,12 +311,7 @@ export default function Cart() {
                                                                     });
                                                                 }}
                                                             >
-                                                                <i className="fa-solid fa-xmark text-base hidden md:flex border-2 border-transparent  hover:text-red-600 hover:border-red-600 size-1 justify-center items-center p-3 rounded-full  group-hover:rotate-90 duration-300 text-gray-500"></i>
-                                                                <span className="btn-primary md:hidden rounded-3xl group text-xs px-2 py-1 bg-red-600 hover:bg-red-500 duration-300">
-                                                                    {" "}
-                                                                    <i className="fa-solid fa-trash-can  mr-2 group-hover:animate-shake"></i>{" "}
-                                                                    Delete
-                                                                </span>
+                                                                <i className="fa-solid fa-xmark text-base flex border-2 border-transparent  hover:text-red-600 hover:border-red-600 size-1 justify-center items-center p-3 rounded-full  group-hover:rotate-90 duration-300 text-gray-500"></i>
                                                             </button>
                                                         </div>
                                                     </div>

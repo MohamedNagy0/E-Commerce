@@ -26,7 +26,7 @@ export default function Footer() {
                             placeholder="Email..."
                             className="form-control sm:flex-grow max-sm:w-1/2 "
                         />
-                        <button className="btn-primary max-sm:flex-grow">
+                        <button className="btn-primary max-sm:flex-grow py-[5px]">
                             Share app link
                         </button>
                     </div>

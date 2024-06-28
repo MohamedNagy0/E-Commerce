@@ -206,7 +206,7 @@ export default function CheckOut({ totalPrice }) {
                         </p>
                     )}
 
-                    <div className=" flex  gap-4 justify-between items-center">
+                    <div className=" flex max-md:flex-col  gap-4 justify-between items-center">
                         <button
                             onClick={() => {
                                 setDetailsTouch(true);
