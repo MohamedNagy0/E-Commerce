@@ -24,9 +24,9 @@ export default function Footer() {
                         <input
                             type="email"
                             placeholder="Email..."
-                            className="form-control sm:flex-grow max-sm:w-1/2 "
+                            className="form-control xs:flex-grow max-xs:w-1/2"
                         />
-                        <button className="btn-primary max-sm:flex-grow py-[5px]">
+                        <button className="btn-primary max-xs:flex-grow py-[5px]">
                             Share app link
                         </button>
                     </div>

@@ -20,6 +20,7 @@ export default {
         extend: {
             screens: {
                 "md-850": "850px",
+                xs: "460px",
             },
             boxShadow: {
                 myShadow:

@@ -20,7 +20,7 @@ export default function AllOrders() {
                             key={order.id}
                             className="p-4 md:p-6 border border-dashed border-slate-300 rounded-xl"
                         >
-                            <header className="flex justify-between items-center border-b-2 border-slate-100 pb-6">
+                            <header className="flex max-xs:flex-col max-xs:items-start justify-between items-center border-b-2 border-slate-100 pb-6">
                                 <div className="flex flex-col gap-3 lg:flex-row lg:justify-between grow lg:gap-0">
                                     <h2 className="flex">
                                         <span className="font-semibold text-nowrap">
@@ -51,14 +51,14 @@ export default function AllOrders() {
                                 </div>
                                 <Link
                                     to="/products"
-                                    className="btn-primary text-nowrap px-3 py-1 text-sm ml-20 max-lg:self-start"
+                                    className="btn-primary max-xs:order-first text-nowrap px-3 py-1 text-sm max-xs:ml-0 max-xs:mb-4 ml-20 max-lg:self-start"
                                 >
                                     Add new items
                                 </Link>
                             </header>
 
                             <div className="wrapper grid grid-cols-12  gap-2  mt-6">
-                                <div className="col-span-8  xl:col-span-10 flex flex-wrap gap-8 ">
+                                <div className="max-xs:col-span-12 col-span-8  xl:col-span-10 flex flex-wrap gap-8 ">
                                     {order.cartItems.map((product) => (
                                         <article
                                             key={product._id}
@@ -140,7 +140,7 @@ export default function AllOrders() {
                                     ))}
                                 </div>
 
-                                <div className="self-start place-content-end col-span-4  xl:col-span-2 flex items-center gap-2 ">
+                                <div className="self-start max-xs:col-span-12 max-xs:place-content-center max-xs:mt-4 place-content-end col-span-4  xl:col-span-2 flex items-center gap-2 ">
                                     <div className="flex flex-col gap-8 items-center justify-center">
                                         <div className="relative p-[11px] size-1 border  border-primary rounded-full  flex items-center justify-center after:w-[1px]  after:h-[33px] after:translate-x-1/2  after:bg-slate-400 after:absolute after:top-full after:right-1/2">
                                             <div className=" size-1 p-[7px] rounded-full bg-primary"></div>
