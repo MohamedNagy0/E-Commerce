@@ -36,7 +36,7 @@ export default function Navbar() {
                 className={`${styles.nav} bg-light p-4 fixed left-0 top-0 right-0 z-50`}
             >
                 <div className="container">
-                    <div className="row flex  gap-4 items-center max-md:flex-wrap">
+                    <div className="row flex  gap-4 items-center max-md-850:flex-wrap">
                         <h1 className="text-2xl font-bold text-nowrap">
                             <Link to="/">
                                 <i className="fa-brands fa-opencart text-primary mr-2"></i>

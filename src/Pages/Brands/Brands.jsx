@@ -16,10 +16,7 @@ export default function Brands() {
 
             let { data } = await axios.request(options);
             setData(data);
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (error) {}
     }
 
     useEffect(() => {
@@ -33,7 +30,7 @@ export default function Brands() {
                         Shop by Brand
                     </h2>
                     <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 mt-4 ">
-                        {data.data.map((brand, index) => (
+                        {data.data.map((brand) => (
                             <Link
                                 to={`/brand/${brand._id}`}
                                 key={brand._id}
