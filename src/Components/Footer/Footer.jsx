@@ -20,13 +20,13 @@ export default function Footer() {
                         </p>
                     </header>
 
-                    <div className="flex items-center gap-2 sm:gap-6">
+                    <div className="flex max-xs:flex-col items-center gap-2 sm:gap-6">
                         <input
                             type="email"
                             placeholder="Email..."
-                            className="form-control xs:flex-grow max-xs:w-1/2"
+                            className="form-control flex-grow max-xs:w-full"
                         />
-                        <button className="btn-primary max-xs:flex-grow py-[5px]">
+                        <button className="btn-primary py-[5px] max-xs:w-full">
                             Share app link
                         </button>
                     </div>

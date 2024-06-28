@@ -60,7 +60,7 @@ export default function Products() {
                             }}
                             className="filter bg-black bg-opacity-25 fixed top-0 right-0 left-0 bottom-0 z-50"
                         >
-                            <div className="bg-white flex flex-col gap-3 p-4 fixed top-0 left-0 w-[350px] h-full">
+                            <div className="bg-white flex flex-col gap-3 p-4 fixed top-0 left-0 max-xs:w-[250px] w-[350px] h-full">
                                 <header className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold  uppercase">
                                         <span className="relative after:bg-darkPrimary after:absolute after:top-full after:left-0 after:w-full after:h-[1px]">
@@ -396,7 +396,7 @@ export default function Products() {
                     ) : (
                         ""
                     )}
-                    <div className="sticky top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-6">
+                    <div className="sticky top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-2 sm:gap-6">
                         <BackButton />
                         <div className="relative">
                             <label

@@ -19,9 +19,9 @@ export default function Categories() {
                     </h2>
                     <section className="wrapper grid grid-cols-12 px-2">
                         {AllCategories.map((category, index) => (
-                            <div
+                            <article
                                 key={category._id}
-                                className="flex flex-col  justify-center items-center p-4 col-span-4 md:col-span-3 lg:md:col-span-2 "
+                                className="flex flex-col  justify-center items-center p-4 max-xs:col-span-6 col-span-4 md:col-span-3 lg:md:col-span-2 "
                             >
                                 <Link
                                     to={`/category/${category._id}`}
@@ -44,7 +44,7 @@ export default function Categories() {
                                         ""
                                     )}
                                 </Link>
-                            </div>
+                            </article>
                         ))}
                     </section>
                 </>
