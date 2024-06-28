@@ -34,7 +34,7 @@ export default function Cart() {
             ) : (
                 <section className="cart-section bg-light p-5 mx-4  rounded-3xl">
                     <div className="container">
-                        <header className="flex max-sm:flex-col  justify-between items-start px-2 my-4 gap-4">
+                        <header className="flex max-xs:flex-col  justify-between items-start px-2 my-4 gap-4">
                             <div className="flex items-center gap-6">
                                 <BackButton />
                                 <h2 className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export default function Cart() {
                                 </h2>
                             </div>
                             {cartProducts.length != 0 ? (
-                                <div className="flex max-sm:self-center  max-sm:mb-8 max-sm:mt-3  flex-col justify-center items-center gap-3">
+                                <div className="flex max-xs:self-center  max-xs:mb-8 max-xs:mt-3  flex-col justify-center items-center gap-3">
                                     <h3 className="font-semibold flex gap-2 text-nowrap text-primary">
                                         <span className="text-darkPrimary">
                                             Total Price :
@@ -200,8 +200,8 @@ export default function Cart() {
                                                             </div>
                                                         </div>
 
-                                                        <div className="flex md:max-lg:mt-2 max-sm:flex-wrap justify-between items-center w-full">
-                                                            <div className="flex max-sm:mt-2 max-sm:w-full justify-center items-center gap-5 border-2 self-center  px-4 py-1 md:py-2 rounded-2xl ">
+                                                        <div className="flex md:max-lg:mt-2 max-xs:flex-wrap justify-between items-center w-full">
+                                                            <div className="flex max-xs:mt-2 max-xs:w-full justify-center items-center gap-5 border-2 self-center  px-4 py-1 md:py-2 rounded-2xl ">
                                                                 <button
                                                                     onClick={() => {
                                                                         setCurrentIndex(
@@ -270,11 +270,11 @@ export default function Cart() {
                                                                 </button>
                                                             </div>
 
-                                                            <div className="text-primary max-sm:order-first  text-sm flex flex-col justify-center items-center">
-                                                                <span className="font-medium text-sm text-darkPrimary">
+                                                            <div className="text-primary max-xs:order-first  text-xs flex flex-col justify-center items-center">
+                                                                <span className="font-medium text-xs text-darkPrimary">
                                                                     Total Price
                                                                 </span>
-                                                                <span className="text-sm flex gap-1 items-center">
+                                                                <span className="text-xs flex gap-1 items-center">
                                                                     <span>
                                                                         EGP
                                                                     </span>
@@ -285,7 +285,7 @@ export default function Cart() {
                                                             </div>
 
                                                             <button
-                                                                className="group max-sm:order-first order-last"
+                                                                className="group max-xs:order-first order-last"
                                                                 onClick={() => {
                                                                     withReactContent(
                                                                         Swal
