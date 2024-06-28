@@ -128,7 +128,7 @@ export default function WishList() {
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="mt-4 flex items-center gap-3">
+                                        <div className="mt-4 flex max-xs:flex-col items-center gap-3">
                                             <div>
                                                 <button
                                                     onClick={() => {

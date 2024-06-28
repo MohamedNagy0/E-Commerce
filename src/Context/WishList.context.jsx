@@ -41,8 +41,10 @@ export default function WishListProvider({ children }) {
                                 {data.message}
                             </span>
                             <a
+                                onClick={() => {
+                                    window.location.href = "/wishlist";
+                                }}
                                 className="border-b border-primary text-sm text-primary"
-                                href="/wishlist"
                             >
                                 View Wishlist
                             </a>

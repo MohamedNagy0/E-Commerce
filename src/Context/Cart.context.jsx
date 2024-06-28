@@ -46,8 +46,10 @@ export default function CartProvider({ children }) {
                 <div className="">
                     <span className="text-sm block">{data.message}</span>{" "}
                     <a
+                        onClick={() => {
+                            window.location.href = "/cart";
+                        }}
                         className="border-b border-primary text-sm text-primary"
-                        href="/cart"
                     >
                         View Cart
                     </a>
