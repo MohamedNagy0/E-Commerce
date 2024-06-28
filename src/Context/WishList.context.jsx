@@ -36,19 +36,8 @@ export default function WishListProvider({ children }) {
                 setTimeout(() => {
                     toast.dismiss(toastId);
                     toast(
-                        <div className="">
-                            <span className="text-sm block">
-                                {data.message}
-                            </span>
-                            <a
-                                onClick={() => {
-                                    window.location.href = "/wishlist";
-                                }}
-                                className="border-b border-primary text-sm text-primary"
-                            >
-                                View Wishlist
-                            </a>
-                        </div>,
+                        <span className="text-sm block">{data.message}</span>,
+
                         {
                             duration: 2000,
                             position: "top-right",

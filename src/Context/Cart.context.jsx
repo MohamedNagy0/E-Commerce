@@ -42,31 +42,18 @@ export default function CartProvider({ children }) {
 
             toast.dismiss(toastId);
             setCartProducts(data);
-            toast(
-                <div className="">
-                    <span className="text-sm block">{data.message}</span>{" "}
-                    <a
-                        onClick={() => {
-                            window.location.href = "/cart";
-                        }}
-                        className="border-b border-primary text-sm text-primary"
-                    >
-                        View Cart
-                    </a>
-                </div>,
-                {
-                    duration: 2000,
-                    position: "top-right",
-                    style: {
-                        marginTop: "48px",
-                    },
-                    icon: (
-                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
-                            <i className="fa-solid fa-check text-white"></i>
-                        </span>
-                    ),
-                }
-            );
+            toast(<span className="text-sm block">{data.message}</span>, {
+                duration: 2000,
+                position: "top-right",
+                style: {
+                    marginTop: "48px",
+                },
+                icon: (
+                    <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                        <i className="fa-solid fa-check text-white"></i>
+                    </span>
+                ),
+            });
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(
