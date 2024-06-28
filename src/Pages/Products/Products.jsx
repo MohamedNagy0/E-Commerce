@@ -396,9 +396,12 @@ export default function Products() {
                     ) : (
                         ""
                     )}
-                    <nav className="sticky top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-2 sm:gap-6">
-                        <BackButton />
-                        <div className="relative">
+
+                    <nav className="sticky top-0 left-0 right-0 mt-[-80px] max-xs:flex-wrap  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex  items-center justify-between mb-3 gap-2 sm:gap-6">
+                        <div className="max-xs:w-full">
+                            <BackButton />
+                        </div>
+                        <div className="relative max-xs:flex-grow max-xs:order-first ">
                             <label
                                 htmlFor="search"
                                 className="absolute top-1/2 -translate-y-1/2 right-[15px]"
@@ -408,7 +411,7 @@ export default function Products() {
                             <input
                                 autoComplete="off"
                                 id="search"
-                                className="form-control rounded-3xl px-3 placeholder:text-sm"
+                                className="form-control rounded-3xl px-3 placeholder:text-sm max-xs:w-full "
                                 type="text"
                                 value={searchInputValue}
                                 placeholder="Search"
@@ -417,12 +420,11 @@ export default function Products() {
                                 }}
                             />
                         </div>
-
                         <div
                             onClick={() => {
                                 setShowFilterModal(!showFilterModal);
                             }}
-                            className="size-8 cursor-pointer"
+                            className="size-8 cursor-pointer max-xs:order-first"
                         >
                             <img
                                 src={filterImg}
@@ -432,14 +434,14 @@ export default function Products() {
                         </div>
                     </nav>
 
-                    <section className="wrapper mb-20 grid grid-cols-12 gap-5 max-md:px-16">
+                    <section className="wrapper mb-28 max-sm:mb-40  grid grid-cols-12 gap-5 max-md:px-16">
                         {filterData.map((obj) => (
                             <ProductCard products={obj} key={obj.id} />
                         ))}
                     </section>
 
                     {filterData.length != 0 ? (
-                        <div className="absolute  bottom-0 left-1/2 w-[485px] -translate-x-1/2  pb-[320px] max-md:pb-[380px]  text-center flex justify-center gap-3  px-3 items-center">
+                        <div className="absolute  max-xs:flex-col bottom-0 w-full  left-1/2 -translate-x-1/2 max-sm:pb-[400px]  pb-[330px]   text-center flex justify-center gap-3  px-3 items-center">
                             {allProductsList.metadata.currentPage >= 3 ? (
                                 <button
                                     onClick={() => {
