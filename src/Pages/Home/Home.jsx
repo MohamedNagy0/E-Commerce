@@ -20,7 +20,6 @@ export default function Home() {
                     <HomeSilder />
 
                     <CategorySilder />
-                    <h3>Hello</h3>
 
                     <div id="products-section">
                         <Title name="Products" />

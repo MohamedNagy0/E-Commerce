@@ -20,15 +20,13 @@ export default function Footer() {
                         </p>
                     </header>
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-2 sm:gap-6">
                         <input
                             type="email"
                             placeholder="Email..."
                             className="form-control flex-grow"
                         />
-                        <button className="btn-primary text-nowrap">
-                            Share app link
-                        </button>
+                        <button className="btn-primary">Share app link</button>
                     </div>
 
                     <div className="flex max-sm:flex-wrap  justify-between items-center mt-8 border-y py-4 border-slate-200">
