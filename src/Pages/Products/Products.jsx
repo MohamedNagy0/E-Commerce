@@ -49,7 +49,7 @@ export default function Products() {
             {allProductsList ? (
                 <>
                     {showFilterModal ? (
-                        <div
+                        <aside
                             onClick={(e) => {
                                 if (
                                     e.target ==
@@ -392,11 +392,11 @@ export default function Products() {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </aside>
                     ) : (
                         ""
                     )}
-                    <div className="sticky top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-2 sm:gap-6">
+                    <nav className="sticky top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-2 sm:gap-6">
                         <BackButton />
                         <div className="relative">
                             <label
@@ -430,13 +430,13 @@ export default function Products() {
                                 alt="filter img"
                             />
                         </div>
-                    </div>
+                    </nav>
 
-                    <div className="wrapper mb-20 grid grid-cols-12 gap-5 max-md:px-16">
+                    <section className="wrapper mb-20 grid grid-cols-12 gap-5 max-md:px-16">
                         {filterData.map((obj) => (
                             <ProductCard products={obj} key={obj.id} />
                         ))}
-                    </div>
+                    </section>
 
                     {filterData.length != 0 ? (
                         <div className="absolute  bottom-0 left-1/2 w-[485px] -translate-x-1/2  pb-[320px] max-md:pb-[380px]  text-center flex justify-center gap-3  px-3 items-center">
