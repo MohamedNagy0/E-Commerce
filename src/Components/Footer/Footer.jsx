@@ -26,7 +26,9 @@ export default function Footer() {
                             placeholder="Email..."
                             className="form-control flex-grow"
                         />
-                        <button className="btn-primary">Share app link</button>
+                        <button className="btn-primary text-nowrap">
+                            Share app link
+                        </button>
                     </div>
 
                     <div className="flex max-sm:flex-wrap  justify-between items-center mt-8 border-y py-4 border-slate-200">
