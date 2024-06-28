@@ -42,7 +42,9 @@ export default function WishList() {
 
                         {wishListProducts.count == 0 ? (
                             <footer className="p-5 m-16 flex flex-col justify-center items-center gap-2 text-center">
-                                <p>There are not products yet.</p>
+                                <p className="text-nowrap">
+                                    There are not products yet.
+                                </p>
                                 <Link
                                     to="/products"
                                     className="btn-primary text-nowrap "

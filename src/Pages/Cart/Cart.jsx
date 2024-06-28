@@ -70,7 +70,9 @@ export default function Cart() {
 
                         {cartProducts.length == 0 ? (
                             <footer className="p-5 m-16 flex flex-col justify-center items-center gap-2 text-center">
-                                <p>There are not items yet.</p>
+                                <p className="text-nowrap">
+                                    There are not items yet.
+                                </p>
                                 <Link
                                     to="/"
                                     className="btn-primary text-nowrap "
