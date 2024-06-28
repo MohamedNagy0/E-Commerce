@@ -31,7 +31,7 @@ export default function CategoriesDetails() {
         <>
             {specificCategoryProducts ? (
                 <>
-                    <div className="flex justify-start mb-4">
+                    <div className="flex px-4 justify-start mb-4">
                         <BackButton />
                     </div>
                     {specificCategoryProducts.length == 0 ? (
