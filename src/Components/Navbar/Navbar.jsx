@@ -47,6 +47,9 @@ export default function Navbar() {
                         {token ? (
                             <div className="ml-auto md-850:order-3 flex justify-center gap-3 items-center">
                                 <Link
+                                    onClick={() => {
+                                        setOpen(false);
+                                    }}
                                     to="/wishList"
                                     className={`cursor-pointer`}
                                 >
@@ -64,6 +67,9 @@ export default function Navbar() {
                                     )}
                                 </Link>
                                 <Link
+                                    onClick={() => {
+                                        setOpen(false);
+                                    }}
                                     to="/cart"
                                     className={`${cartAnimation} hover:text-slate-700 duration-300 relative cursor-pointer`}
                                 >
@@ -100,21 +106,41 @@ export default function Navbar() {
                                 open ? "flex" : "hidden"
                             }  max-md-850:w-full max-md-850:flex-col md-850:flex gap-4 nav-links items-center mr-auto text-gray-500`}
                         >
-                            <li>
+                            <li
+                                onClick={() => {
+                                    setOpen(false);
+                                }}
+                            >
                                 <NavLink to="/">Home</NavLink>
                             </li>
-                            <li>
+                            <li
+                                onClick={() => {
+                                    setOpen(false);
+                                }}
+                            >
                                 <NavLink to="products">Products</NavLink>
                             </li>
-                            <li>
+                            <li
+                                onClick={() => {
+                                    setOpen(false);
+                                }}
+                            >
                                 <NavLink to="categories">Categories</NavLink>
                             </li>
-                            <li>
+                            <li
+                                onClick={() => {
+                                    setOpen(false);
+                                }}
+                            >
                                 <NavLink to="brands">Brands</NavLink>
                             </li>
 
                             {token ? (
-                                <li>
+                                <li
+                                    onClick={() => {
+                                        setOpen(false);
+                                    }}
+                                >
                                     <NavLink to="allorders">Orders</NavLink>
                                 </li>
                             ) : (
