@@ -396,7 +396,7 @@ export default function Products() {
                     ) : (
                         ""
                     )}
-                    <div className="sticky top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-2 sm:gap-6">
+                    <div className="sticky hidden top-0 left-0 right-0 mt-[-80px]  pt-[70px] bg-light  px-4 pb-3 rounded-3xl bg- z-30 flex items-center justify-between mb-3 gap-2 sm:gap-6">
                         <BackButton />
                         <div className="relative">
                             <label
