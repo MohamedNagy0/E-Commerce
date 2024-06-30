@@ -127,25 +127,17 @@ export default function ProductDetails() {
                                             <button
                                                 onClick={() => {
                                                     if (token) {
-                                                        if (
-                                                            wishListProducts.data.map(
-                                                                (product) =>
-                                                                    product.id ==
-                                                                    productId
-                                                                        ? (favorite = true)
-                                                                        : (favorite = false)
-                                                            )
-                                                        ) {
-                                                            if (favorite) {
-                                                                deleteProductFromWishList(
-                                                                    productId
-                                                                );
-                                                            } else {
-                                                                addProductToWishList(
-                                                                    productId
-                                                                );
-                                                            }
-                                                        }
+                                                        wishListProducts.data.find(
+                                                            (product) =>
+                                                                product.id ==
+                                                                productId
+                                                        )
+                                                            ? deleteProductFromWishList(
+                                                                  productId
+                                                              )
+                                                            : addProductToWishList(
+                                                                  productId
+                                                              );
                                                     } else {
                                                         setShowLoginModal(true);
                                                         document
@@ -160,17 +152,15 @@ export default function ProductDetails() {
                                                 className="btn-primary"
                                             >
                                                 <span className="icon">
-                                                    {
-                                                        <i
-                                                            className={`${
-                                                                localStorage.getItem(
-                                                                    `${productId}${token}`
-                                                                )
-                                                                    ? "fa-solid text-red-600"
-                                                                    : "fa-regular"
-                                                            }  fa-heart`}
-                                                        ></i>
-                                                    }
+                                                    {wishListProducts?.data.find(
+                                                        (product) =>
+                                                            product.id ==
+                                                            productId
+                                                    ) ? (
+                                                        <i className="fa-solid text-red-600 fa-heart"></i>
+                                                    ) : (
+                                                        <i className="fa-regular fa-heart"></i>
+                                                    )}
                                                 </span>
                                             </button>
 
