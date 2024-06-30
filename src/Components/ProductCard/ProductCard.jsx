@@ -83,15 +83,13 @@ export default function ProductCard({ products }) {
                             }}
                             className="icon opacity-0 translate-y-20 group-hover:translate-y-0 group-hover:opacity-100  hover:bg-darkPrimary duration-300 cursor-pointer bg-primary flex justify-center items-center size-12 bg-opacity-70 rounded-full text-white"
                         >
-                            <i
-                                className={`fa-solid fa-heart ${
-                                    wishListProducts?.data.find(
-                                        (product) => product.id == id
-                                    )
-                                        ? "text-red-600"
-                                        : ""
-                                }`}
-                            ></i>
+                            {wishListProducts?.data.find(
+                                (product) => product.id == id
+                            ) ? (
+                                <i className="fa-solid text-red-600 fa-heart"></i>
+                            ) : (
+                                <i className="fa-regular fa-heart"></i>
+                            )}
                         </div>
 
                         <div
