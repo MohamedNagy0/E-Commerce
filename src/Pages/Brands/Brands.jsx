@@ -31,7 +31,7 @@ export default function Brands() {
                     </h2>
                     {data.data.length == 0 ? (
                         <p className="text-center mt-8 text-xl">
-                            Sorry no more "Brands" right Now
+                            Sorry no more "Brands" right now
                         </p>
                     ) : (
                         ""
