@@ -33,6 +33,7 @@ export default function WishListProvider({ children }) {
             let { data } = await axios.request(options);
 
             if (data.status == "success") {
+                getProductsToWishList();
                 setTimeout(() => {
                     toast.dismiss(toastId);
                     toast(
@@ -93,6 +94,8 @@ export default function WishListProvider({ children }) {
             let { data } = await axios.request(options);
 
             if (data.status == "success") {
+                getProductsToWishList();
+
                 setTimeout(() => {
                     toast.dismiss(toastId);
                     toast(<span className="text-sm">{data.message}</span>, {
