@@ -29,6 +29,14 @@ export default function Brands() {
                     <h2 className="text-center border-b border-t py-2 text-primary text-lg">
                         Shop by Brand
                     </h2>
+                    {data.data.length == 0 ? (
+                        <p className="text-center mt-8 text-xl">
+                            Sorry no more "Brands" right Now
+                        </p>
+                    ) : (
+                        ""
+                    )}
+
                     <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 mt-4 ">
                         {data.data.map((brand) => (
                             <Link
