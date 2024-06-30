@@ -31,7 +31,9 @@ export default function Brands() {
                     </h2>
                     {data.data.length == 0 ? (
                         <p className="text-center mt-8 text-xl">
-                            Sorry no more "Brands" right now
+                            <span className=" text-white   bg-yellow-400 py-3 px-5">
+                                Sorry no more "Brands" right now
+                            </span>
                         </p>
                     ) : (
                         ""
