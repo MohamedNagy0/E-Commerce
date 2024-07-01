@@ -31,7 +31,7 @@ export default function Brands() {
                     </h2>
                     {data.data.length == 0 ? (
                         <p className="text-center mt-8 text-xl">
-                            <span className=" text-white   bg-yellow-400 py-3 px-5">
+                            <span className=" text-white inline-block   bg-yellow-400 py-3 px-5">
                                 We apologize, there is an error that is being
                                 fixed
                             </span>
