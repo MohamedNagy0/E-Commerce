@@ -116,6 +116,7 @@ export default function WishListProvider({ children }) {
     }
 
     function deleteAllWishList() {
+        // I did this fun to help the user clean all wishlist easily, but I'ts not the best way because I don't have "End Point" for that
         wishListProducts.data.map((product) =>
             deleteProductFromWishList(product.id)
         );
