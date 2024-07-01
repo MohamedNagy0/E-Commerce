@@ -32,7 +32,8 @@ export default function Brands() {
                     {data.data.length == 0 ? (
                         <p className="text-center mt-8 text-xl">
                             <span className=" text-white   bg-yellow-400 py-3 px-5">
-                                Sorry no more "Brands" right now
+                                We apologize, there is an error that is being
+                                fixed
                             </span>
                         </p>
                     ) : (

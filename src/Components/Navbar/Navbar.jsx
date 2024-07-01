@@ -11,16 +11,17 @@ export default function Navbar() {
         useContext(CartContext);
     const { getProductsToWishList, wishListProducts } =
         useContext(WishListContext);
+
     useEffect(() => {
         if (token) {
             getAllProductsCart();
-            getProductsToWishList();
         }
     }, []);
 
     useEffect(() => {
         if (token) {
             getAllProductsCart();
+            getProductsToWishList();
         }
     }, [token]);
 
@@ -32,7 +33,12 @@ export default function Navbar() {
                 <div className="container">
                     <div className="row flex  gap-4 items-center max-md-850:flex-wrap">
                         <h1 className="text-2xl font-bold text-nowrap">
-                            <Link to="/">
+                            <Link
+                                onClick={() => {
+                                    setOpen(false);
+                                }}
+                                to="/"
+                            >
                                 <i className="fa-brands fa-opencart text-primary mr-2"></i>
                                 <span>FreshCart</span>
                             </Link>
